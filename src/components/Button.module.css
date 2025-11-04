@@ -1,0 +1,19 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.root:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
