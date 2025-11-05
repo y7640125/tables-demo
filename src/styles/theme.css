@@ -1,0 +1,9 @@
+:root {
+  --table-bg: #202233;
+  --table-header: #2e3144;
+  --table-border: #5e636c80; /* 50% alpha */
+  --text-color: #d6ddec;
+  --text-muted: #b8c0d3;
+}
+
+

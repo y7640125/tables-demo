@@ -1,0 +1,18 @@
+.iconButton {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--table-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background-color: #3a3f57;
+}
+
+

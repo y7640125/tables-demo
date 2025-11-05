@@ -1,27 +1,30 @@
-import { Link } from 'react-router-dom'
-import AppRoutes from './router/AppRoutes'
-import styles from './components/TableContainer.module.css'
-import btn from './components/Button.module.css'
-import { useAppStore } from './stores/useAppStore'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import styles from "./App.module.css";
 
-export default function App() {
-  const { count, increment, reset } = useAppStore()
+function Home() {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <nav style={{ display: 'flex', gap: '1rem' }}>
-          <Link to="/">Home</Link>
-          <Link to="/tables">Tables</Link>
-        </nav>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <span>Count: {count}</span>
-          <button className={btn.root} onClick={increment}>Increment</button>
-          <button className={btn.root} onClick={reset}>Reset</button>
-        </div>
-      </header>
-      <main>
-        <AppRoutes />
-      </main>
+      <h1 className={styles.header}>בחירת טבלה</h1>
+      <div className={styles.buttons}>
+        <button onClick={() => navigate("/tanstack")}>טבלת TanStack</button>
+        <button onClick={() => navigate("/ag-grid")}>טבלת AG Grid</button>
+        <button onClick={() => navigate("/rdg")}>טבלת React Data Grid</button>
+      </div>
     </div>
-  )
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tanstack" element={<div style={{color:"var(--text-color)", padding:24}}>TanStack Table</div>} />
+        <Route path="/ag-grid" element={<div style={{color:"var(--text-color)", padding:24}}>AG Grid Table</div>} />
+        <Route path="/rdg" element={<div style={{color:"var(--text-color)", padding:24}}>React Data Grid</div>} />
+      </Routes>
+    </Router>
+  );
 }

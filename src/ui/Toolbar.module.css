@@ -1,0 +1,21 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--table-header);
+  border-bottom: 1px solid var(--table-border);
+}
+
+.input {
+  flex: 1;
+  background: var(--table-bg);
+  color: var(--text-color);
+  border: 1px solid var(--table-border);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+}
+
+.spacer { flex: 1; }
+
+

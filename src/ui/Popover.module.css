@@ -1,0 +1,11 @@
+.popover {
+  position: absolute;
+  background: var(--table-bg);
+  border: 1px solid var(--table-border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-width: 200px;
+  z-index: 50;
+}
+
+

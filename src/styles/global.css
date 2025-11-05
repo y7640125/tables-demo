@@ -1,0 +1,29 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  direction: rtl;
+}
+
+body {
+  background: var(--table-bg);
+  color: var(--text-color);
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+}
+
+*::selection {
+  background: #3a3f57;
+  color: white;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.italic-weak {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+
