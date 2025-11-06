@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
+  padding: 2rem;
   text-align: center;
   background: var(--table-bg);
   color: var(--text-color);
@@ -17,6 +18,7 @@
 .buttons {
   display: flex;
   gap: 1rem;
+  margin-bottom: 3rem;
 }
 
 .buttons button {
@@ -31,5 +33,24 @@
 
 .buttons button:hover {
   background-color: #3a3f57;
+}
+
+.demoSection {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 2rem;
+}
+
+.demoHeader {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.fieldsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: right;
 }
 

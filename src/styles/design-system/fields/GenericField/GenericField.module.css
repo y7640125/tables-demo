@@ -1,0 +1,43 @@
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.control {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--table-border);
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.control:focus {
+  outline: none;
+  border-color: #3a3f57;
+}
+
+.control[aria-invalid='true'] {
+  border-color: #d32f2f;
+}
+
+.checkbox {
+  transform: scale(1.2);
+  cursor: pointer;
+  accent-color: var(--table-header);
+}
+
+.value {
+  padding: 8px 0;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
