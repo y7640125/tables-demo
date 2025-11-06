@@ -14,4 +14,3 @@ export default function IconButton({ className, children, ...rest }: Props) {
   )
 }
 
-

@@ -1,7 +1,7 @@
 import { useId, useState } from 'react'
 import styles from './Toolbar.module.css'
-import Button from './Button'
-import IconButton from './IconButton'
+import { Button } from '../Button'
+import { IconButton } from '../IconButton'
 
 type Props = {
   onSearch?: (value: string) => void
@@ -45,5 +45,4 @@ export default function Toolbar({ onSearch, onToggleEmpty, onExportCsv, ColumnVi
     </div>
   )
 }
-
 

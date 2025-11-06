@@ -10,4 +10,3 @@ export default function Button({ className, variant = 'default', ...rest }: Prop
   return <button className={clsx(styles.button, className)} {...rest} />
 }
 
-

@@ -1,29 +1,17 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-import styles from "./App.module.css";
-
-function Home() {
-  const navigate = useNavigate();
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.header}>בחירת טבלה</h1>
-      <div className={styles.buttons}>
-        <button onClick={() => navigate("/tanstack")}>טבלת TanStack</button>
-        <button onClick={() => navigate("/ag-grid")}>טבלת AG Grid</button>
-        <button onClick={() => navigate("/rdg")}>טבלת React Data Grid</button>
-      </div>
-    </div>
-  );
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home/Home";
+import TanStackTable from "./components/tables/TanStackTable/TanStackTable";
+import AgGridTable from "./components/tables/AgGridTable/AgGridTable";
+import ReactDataGridTable from "./components/tables/ReactDataGridTable/ReactDataGridTable";
 
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tanstack" element={<div style={{color:"var(--text-color)", padding:24}}>TanStack Table</div>} />
-        <Route path="/ag-grid" element={<div style={{color:"var(--text-color)", padding:24}}>AG Grid Table</div>} />
-        <Route path="/rdg" element={<div style={{color:"var(--text-color)", padding:24}}>React Data Grid</div>} />
+        <Route path="/tanstack" element={<TanStackTable />} />
+        <Route path="/ag-grid" element={<AgGridTable />} />
+        <Route path="/rdg" element={<ReactDataGridTable />} />
       </Routes>
     </Router>
   );
