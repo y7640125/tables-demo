@@ -1,0 +1,336 @@
+/* General Table Theme */
+.custom-table {
+  background-color: #202233;
+  color: #d6ddec;
+  border: 1px solid #5e636c80;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table th {
+  background-color: #2e3144;
+  color: #d6ddec;
+  border: 1px solid #5e636c80;
+  height: 35px;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.custom-table td {
+  border: 1px solid #5e636c80;
+  height: 35px;
+  padding: 0 8px;
+  color: #d6ddec;
+}
+
+/* Dynamic column width */
+.custom-table th,
+.custom-table td {
+  min-width: 80px;
+  max-width: 200px;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+/* Scrollable container */
+.table-container {
+  overflow: auto;
+  border: 1px solid #5e636c80;
+  background-color: #202233;
+}
+
+/* AG Grid theme overrides */
+.ag-theme-quartz.custom-table {
+  --ag-background-color: #202233;
+  --ag-header-background-color: #2e3144;
+  --ag-border-color: #5e636c80;
+  --ag-text-color: #d6ddec;
+  --ag-header-text-color: #d6ddec;
+  --ag-row-height: 38px;
+  --ag-header-height: 38px;
+  direction: rtl !important;
+  text-align: right;
+  background-color: #202233;
+  color: #d6ddec;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.ag-theme-quartz.custom-table .ag-header-cell,
+.ag-theme-quartz.custom-table .ag-header-group-cell {
+  background-color: #2e3144;
+  color: #d6ddec;
+  border-color: #5e636c80;
+}
+
+.ag-theme-quartz.custom-table .ag-cell,
+.ag-theme-quartz.custom-table .ag-row {
+  background-color: #202233;
+  color: #d6ddec;
+  border-color: #5e636c80;
+}
+
+/* Force AG Grid RTL direction and alignment */
+.ag-theme-quartz.custom-table .ag-header {
+  direction: rtl !important;
+}
+
+.ag-theme-quartz.custom-table .ag-header-cell-label {
+  flex-direction: row-reverse !important;
+  justify-content: flex-end !important;
+  text-align: right !important;
+  align-items: center;
+  display: flex;
+}
+
+.ag-theme-quartz.custom-table .ag-cell {
+  direction: rtl !important;
+  text-align: right !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: 1.4;
+  height: 100%;
+  overflow: visible;
+}
+
+/* RTL header class */
+.ag-theme-quartz.custom-table .rtl-header {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Flip sort/filter icons for RTL */
+.ag-theme-quartz.custom-table .ag-icon {
+  transform: scaleX(-1);
+}
+
+/* 🔹 Sort icons styling */
+.ag-theme-quartz.custom-table .ag-header-cell-sorted-asc .ag-icon {
+  color: #d6ddec;
+}
+
+.ag-theme-quartz.custom-table .ag-header-cell-sorted-desc .ag-icon {
+  color: #d6ddec;
+}
+
+/* Optional hover effect */
+.ag-theme-quartz.custom-table .ag-header-cell:hover {
+  background-color: #2e3144;
+}
+
+/* RTL scrollbar and viewport positioning */
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll {
+  direction: rtl !important;
+}
+
+.ag-theme-quartz.custom-table .ag-center-cols-viewport {
+  direction: rtl !important;
+}
+
+.ag-theme-quartz.custom-table .ag-header-viewport {
+  direction: rtl !important;
+}
+
+.ag-theme-quartz.custom-table .ag-body-viewport {
+  direction: rtl !important;
+}
+
+/* Ensure column resizing handle is on the correct side for RTL */
+.ag-theme-quartz.custom-table .ag-header-cell-resize {
+  left: 0;
+  right: auto;
+}
+
+/* React Data Grid theme overrides */
+.rdg-light.custom-table,
+.rdg-dark.custom-table {
+  --rdg-background-color: #202233;
+  --rdg-header-background-color: #2e3144;
+  --rdg-border-color: #5e636c80;
+  --rdg-color: #d6ddec;
+  background-color: #202233;
+  color: #d6ddec;
+  border-color: #5e636c80;
+}
+
+.rdg-light.custom-table .rdg-cell,
+.rdg-dark.custom-table .rdg-cell {
+  background-color: #202233;
+  color: #d6ddec;
+  border-color: #5e636c80;
+  height: 35px;
+}
+
+.rdg-light.custom-table .rdg-header-row,
+.rdg-dark.custom-table .rdg-header-row {
+  background-color: #2e3144;
+  color: #d6ddec;
+  border-color: #5e636c80;
+  height: 35px;
+}
+
+/* TanStack Table theme */
+.tanstack-table.custom-table {
+  background-color: #202233;
+  color: #d6ddec;
+  border: 1px solid #5e636c80;
+}
+
+.tanstack-table.custom-table th {
+  background-color: #2e3144;
+  color: #d6ddec;
+  border: 1px solid #5e636c80;
+  height: 35px;
+}
+
+.tanstack-table.custom-table td {
+  background-color: #202233;
+  color: #d6ddec;
+  border: 1px solid #5e636c80;
+  height: 35px;
+}
+
+/* 🔹 Universal scrollbar styling for all tables */
+/* Webkit browsers (Chrome, Safari, Edge) */
+.custom-table::-webkit-scrollbar,
+.ag-theme-quartz.custom-table::-webkit-scrollbar,
+.rdg::-webkit-scrollbar,
+.rdg-light.custom-table::-webkit-scrollbar,
+.rdg-dark.custom-table::-webkit-scrollbar,
+.table-container::-webkit-scrollbar,
+.ag-theme-quartz.custom-table .ag-body-viewport::-webkit-scrollbar,
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll::-webkit-scrollbar,
+.ag-theme-quartz.custom-table .ag-center-cols-viewport::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Scrollbar track (background) */
+.custom-table::-webkit-scrollbar-track,
+.ag-theme-quartz.custom-table::-webkit-scrollbar-track,
+.rdg::-webkit-scrollbar-track,
+.rdg-light.custom-table::-webkit-scrollbar-track,
+.rdg-dark.custom-table::-webkit-scrollbar-track,
+.table-container::-webkit-scrollbar-track,
+.ag-theme-quartz.custom-table .ag-body-viewport::-webkit-scrollbar-track,
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll::-webkit-scrollbar-track,
+.ag-theme-quartz.custom-table .ag-center-cols-viewport::-webkit-scrollbar-track {
+  background-color: #202233; /* same as table background */
+  border-radius: 8px;
+}
+
+/* Scrollbar thumb (draggable part) */
+.custom-table::-webkit-scrollbar-thumb,
+.ag-theme-quartz.custom-table::-webkit-scrollbar-thumb,
+.rdg::-webkit-scrollbar-thumb,
+.rdg-light.custom-table::-webkit-scrollbar-thumb,
+.rdg-dark.custom-table::-webkit-scrollbar-thumb,
+.table-container::-webkit-scrollbar-thumb,
+.ag-theme-quartz.custom-table .ag-body-viewport::-webkit-scrollbar-thumb,
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll::-webkit-scrollbar-thumb,
+.ag-theme-quartz.custom-table .ag-center-cols-viewport::-webkit-scrollbar-thumb {
+  background-color: #2e3144; /* slightly lighter for contrast */
+  border-radius: 8px;
+  border: 2px solid #202233; /* creates separation and smooth edges */
+}
+
+/* On hover, make the thumb slightly brighter */
+.custom-table::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz.custom-table::-webkit-scrollbar-thumb:hover,
+.rdg::-webkit-scrollbar-thumb:hover,
+.rdg-light.custom-table::-webkit-scrollbar-thumb:hover,
+.rdg-dark.custom-table::-webkit-scrollbar-thumb:hover,
+.table-container::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz.custom-table .ag-body-viewport::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz.custom-table .ag-center-cols-viewport::-webkit-scrollbar-thumb:hover {
+  background-color: #3a3d55;
+}
+
+/* Firefox scrollbar colors */
+.custom-table,
+.ag-theme-quartz.custom-table,
+.rdg,
+.rdg-light.custom-table,
+.rdg-dark.custom-table,
+.table-container,
+.ag-theme-quartz.custom-table .ag-body-viewport,
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll,
+.ag-theme-quartz.custom-table .ag-center-cols-viewport {
+  scrollbar-color: #2e3144 #202233;
+  scrollbar-width: thin;
+}
+
+/* 🔹 Scrollbar styling for dropdowns and filter menus */
+/* Webkit browsers (Chrome, Safari, Edge) */
+.ag-theme-quartz .ag-filter-body-wrapper::-webkit-scrollbar,
+.ag-theme-quartz .ag-set-filter-list::-webkit-scrollbar,
+.ag-theme-quartz .ag-filter-select::-webkit-scrollbar,
+.ag-theme-quartz .ag-popup-child::-webkit-scrollbar,
+.filter-dropdown::-webkit-scrollbar,
+.rdg .filter-dropdown::-webkit-scrollbar,
+.custom-table .filter-dropdown::-webkit-scrollbar,
+.tanstack-table .filter-dropdown::-webkit-scrollbar,
+select::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track (scrollbar background) for filter dropdowns */
+.ag-theme-quartz .ag-filter-body-wrapper::-webkit-scrollbar-track,
+.ag-theme-quartz .ag-set-filter-list::-webkit-scrollbar-track,
+.ag-theme-quartz .ag-filter-select::-webkit-scrollbar-track,
+.ag-theme-quartz .ag-popup-child::-webkit-scrollbar-track,
+.filter-dropdown::-webkit-scrollbar-track,
+.rdg .filter-dropdown::-webkit-scrollbar-track,
+.custom-table .filter-dropdown::-webkit-scrollbar-track,
+.tanstack-table .filter-dropdown::-webkit-scrollbar-track,
+select::-webkit-scrollbar-track {
+  background-color: #202233; /* same as table background */
+  border-radius: 8px;
+}
+
+/* Thumb (draggable handle) for filter dropdowns */
+.ag-theme-quartz .ag-filter-body-wrapper::-webkit-scrollbar-thumb,
+.ag-theme-quartz .ag-set-filter-list::-webkit-scrollbar-thumb,
+.ag-theme-quartz .ag-filter-select::-webkit-scrollbar-thumb,
+.ag-theme-quartz .ag-popup-child::-webkit-scrollbar-thumb,
+.filter-dropdown::-webkit-scrollbar-thumb,
+.rdg .filter-dropdown::-webkit-scrollbar-thumb,
+.custom-table .filter-dropdown::-webkit-scrollbar-thumb,
+.tanstack-table .filter-dropdown::-webkit-scrollbar-thumb,
+select::-webkit-scrollbar-thumb {
+  background-color: #2e3144; /* slightly lighter for visibility */
+  border-radius: 8px;
+  border: 2px solid #202233; /* smooth separation */
+}
+
+/* Hover effect for filter dropdowns */
+.ag-theme-quartz .ag-filter-body-wrapper::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz .ag-set-filter-list::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz .ag-filter-select::-webkit-scrollbar-thumb:hover,
+.ag-theme-quartz .ag-popup-child::-webkit-scrollbar-thumb:hover,
+.filter-dropdown::-webkit-scrollbar-thumb:hover,
+.rdg .filter-dropdown::-webkit-scrollbar-thumb:hover,
+.custom-table .filter-dropdown::-webkit-scrollbar-thumb:hover,
+.tanstack-table .filter-dropdown::-webkit-scrollbar-thumb:hover,
+select::-webkit-scrollbar-thumb:hover {
+  background-color: #3a3d55;
+}
+
+/* Firefox compatibility for filter dropdowns */
+.ag-theme-quartz .ag-filter-body-wrapper,
+.ag-theme-quartz .ag-set-filter-list,
+.ag-theme-quartz .ag-filter-select,
+.ag-theme-quartz .ag-popup-child,
+.filter-dropdown,
+.rdg .filter-dropdown,
+.custom-table .filter-dropdown,
+.tanstack-table .filter-dropdown,
+select {
+  scrollbar-color: #2e3144 #202233;
+  scrollbar-width: thin;
+}
+

@@ -11,10 +11,12 @@ interface GenericFieldProps {
   id?: string
   /** optional className to wrap */
   className?: string
+  /** hide the label (useful for table cells) */
+  hideLabel?: boolean
 }
 
 export default function GenericField(props: GenericFieldProps): JSX.Element {
-  const { model, edit, onChange, id, className } = props
+  const { model, edit, onChange, id, className, hideLabel = false } = props
   const fieldId = id ?? `field-${model.name}`
 
   const handleChange = (nextValue: string | boolean) => {
@@ -46,9 +48,11 @@ export default function GenericField(props: GenericFieldProps): JSX.Element {
 
   return (
     <div className={`${styles.field} ${className || ''}`}>
-      <label htmlFor={fieldId} className={styles.label}>
-        {model.label}
-      </label>
+      {!hideLabel && (
+        <label htmlFor={fieldId} className={styles.label}>
+          {model.label}
+        </label>
+      )}
       {edit ? (
         <>
           {model.type === 'text' && (
@@ -109,9 +113,14 @@ export default function GenericField(props: GenericFieldProps): JSX.Element {
             </select>
           )}
         </>
-      ) : (
-        <div className={styles.value}>{formatValue()}</div>
-      )}
+      ) : (() => {
+        const formattedValue = formatValue();
+        return (
+          <div className={styles.value}>
+            {formattedValue ? formattedValue : <i style={{ opacity: 0.5 }}>לא הוזן</i>}
+          </div>
+        );
+      })()}
     </div>
   )
 }
