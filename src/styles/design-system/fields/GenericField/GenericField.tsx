@@ -13,10 +13,12 @@ interface GenericFieldProps {
   className?: string
   /** hide the label (useful for table cells) */
   hideLabel?: boolean
+  /** when true, apply text ellipsis to the displayed value (only in read-only mode) */
+  truncate?: boolean
 }
 
 export default function GenericField(props: GenericFieldProps): JSX.Element {
-  const { model, edit, onChange, id, className, hideLabel = false } = props
+  const { model, edit, onChange, id, className, hideLabel = false, truncate = false } = props
   const fieldId = id ?? `field-${model.name}`
 
   const handleChange = (nextValue: string | boolean) => {
@@ -115,9 +117,23 @@ export default function GenericField(props: GenericFieldProps): JSX.Element {
         </>
       ) : (() => {
         const formattedValue = formatValue();
+        const valueContent = formattedValue ? formattedValue : <i style={{ opacity: 0.5 }}>לא הוזן</i>;
+        
+        if (truncate) {
+          return (
+            <div className={styles.ellipsisTextContainer}>
+              <div className={styles.ellipsisText}>
+                <div className={styles.value}>
+                  {valueContent}
+                </div>
+              </div>
+            </div>
+          );
+        }
+        
         return (
           <div className={styles.value}>
-            {formattedValue ? formattedValue : <i style={{ opacity: 0.5 }}>לא הוזן</i>}
+            {valueContent}
           </div>
         );
       })()}

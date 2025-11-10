@@ -10,11 +10,12 @@ import {
 import { useVirtualizer } from '@tanstack/react-virtual';
 import data from '../../../assets/mock-table-data.json';
 import GenericField from '../../../styles/design-system/fields/GenericField';
-import { Modal, IconButton, Button } from '../../../styles/design-system';
+import { Modal, IconButton, Button, Tooltip } from '../../../styles/design-system';
 import { strongId, isEmptyColumn, getUniqueValues, type FieldSchema, type TableData } from '../../../utils/tableUtils';
 import EmptyCell from '../../shared/EmptyCell';
 import ColumnFilterPopover from '../../shared/ColumnFilterPopover';
 import styles from './TanStackFieldTablePage.module.css';
+import ellipsisStyles from '../../../styles/design-system/TableEllipsis.module.css';
 
 type RowData = Record<string, any>;
 
@@ -88,7 +89,11 @@ export default function TanStackFieldTablePage() {
         const strongIdValue = strongId(value);
         
         if (!strongIdValue) {
-          return <EmptyCell />;
+          return (
+            <Tooltip content="לא הוזן">
+              <EmptyCell />
+            </Tooltip>
+          );
         }
         
         const fieldModel = {
@@ -99,10 +104,15 @@ export default function TanStackFieldTablePage() {
           options: schema.options?.map(opt => ({ value: opt.value, label: opt.label })),
         };
         
+        // Convert value to string for tooltip
+        const tooltipContent = value != null ? String(value) : '';
+        
         return (
-          <div className={styles.cell}>
-            <GenericField edit={false} model={fieldModel} hideLabel={true} />
-          </div>
+          <Tooltip content={tooltipContent}>
+            <div className={`${styles.cell} ${ellipsisStyles.ellipsisCell}`}>
+              <GenericField edit={false} model={fieldModel} hideLabel={true} />
+            </div>
+          </Tooltip>
         );
       },
       accessorKey: schema.name,

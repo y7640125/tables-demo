@@ -8,11 +8,13 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
 ModuleRegistry.registerModules([AllCommunityModule]);
 import data from '../../../assets/mock-table-data.json';
 import GenericField from '../../../styles/design-system/fields/GenericField';
-import { Modal, IconButton, Button } from '../../../styles/design-system';
+import { Modal, IconButton, Button, Tooltip } from '../../../styles/design-system';
 import { strongId, isEmptyColumn, getUniqueValues, type FieldSchema, type TableData } from '../../../utils/tableUtils';
 import EmptyCell from '../../shared/EmptyCell';
 import ColumnFilterPopover from '../../shared/ColumnFilterPopover';
 import styles from './AgGridFieldTablePage.module.css';
+// Import for side effects - applies ellipsis styles to .ag-theme-quartz .ag-cell
+import '../../../styles/design-system/TableEllipsis.module.css';
 
 type RowData = Record<string, any>;
 
@@ -137,7 +139,11 @@ export default function AgGridFieldTablePage() {
           const strongIdValue = strongId(value);
           
           if (!strongIdValue) {
-            return <EmptyCell />;
+            return (
+              <Tooltip content="לא הוזן">
+                <EmptyCell />
+              </Tooltip>
+            );
           }
           
           // Find schema for this field
@@ -151,10 +157,15 @@ export default function AgGridFieldTablePage() {
             options: fieldSchema.options?.map(opt => ({ value: opt.value, label: opt.label })),
           };
           
+          // Convert value to string for tooltip
+          const tooltipContent = value != null ? String(value) : '';
+          
           return (
-            <div className={styles.cell}>
-              <GenericField edit={false} model={fieldModel} hideLabel={true} />
-            </div>
+            <Tooltip content={tooltipContent}>
+              <div className={styles.cell}>
+                <GenericField edit={false} model={fieldModel} hideLabel={true} />
+              </div>
+            </Tooltip>
           );
         },
         headerComponent: (params: IHeaderParams) => (
@@ -182,8 +193,11 @@ export default function AgGridFieldTablePage() {
     cellStyle: {
       direction: 'rtl',
       textAlign: 'right',
-      display: 'flex',
-      alignItems: 'center',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      display: 'block',
+      maxWidth: '100%',
     },
   }), []);
 

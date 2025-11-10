@@ -41,3 +41,29 @@
   font-size: 1rem;
 }
 
+/* Ellipsis container for truncation in table cells */
+.ellipsisTextContainer {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.ellipsisText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ellipsisText .value {
+  padding: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+}
+

@@ -109,7 +109,39 @@
 }
 
 .cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 2rem;
+}
+
+/* Ensure GenericField content inside cell can truncate */
+.cell > * {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  display: block;
+}
+
+/* For flex layouts in table cells */
+.tableCellContent {
+  flex: 1 1 0;
+  min-width: 0; /* required for text-overflow inside flex layouts */
+}
+
+.ellipsisCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  max-width: 100%;
 }
 
 .actionsCell {
