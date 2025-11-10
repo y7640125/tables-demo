@@ -249,7 +249,6 @@ export default function AgGridFieldTablePage() {
           defaultColDef={defaultColDef}
           onGridReady={onGridReady}
           rowBuffer={10}
-          rowSelection={{ mode: 'multiRow' }}
           animateRows={true}
           pagination={false}
           domLayout="normal"

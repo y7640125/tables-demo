@@ -143,6 +143,52 @@
   right: auto;
 }
 
+/* Full-height vertical dividers aligned between header and body */
+/* Use AG Grid's default borders but ensure they're full-height and aligned */
+
+/* Header cells - ensure full-height borders on the right (visual left in RTL) */
+.ag-theme-quartz.custom-table .ag-header-cell {
+  border-right: 1px solid #5e636c80 !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  padding: 0 8px !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove border from the rightmost visual column (last child in DOM, first visually in RTL) */
+.ag-theme-quartz.custom-table .ag-header-row .ag-header-cell:last-child {
+  border-right: none !important;
+}
+
+/* Body cells - align borders with header */
+.ag-theme-quartz.custom-table .ag-cell {
+  border-right: 1px solid #5e636c80 !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid #5e636c80 !important;
+  padding: 0 8px !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove border from the rightmost visual column (last child in DOM, first visually in RTL) */
+.ag-theme-quartz.custom-table .ag-row .ag-cell:last-child {
+  border-right: none !important;
+}
+
+/* Ensure header cell content is visible and properly displayed */
+.ag-theme-quartz.custom-table .ag-header-cell-label {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Ensure header cell wrapper maintains proper layout */
+.ag-theme-quartz.custom-table .ag-header-cell-wrapper {
+  height: 100% !important;
+}
+
 /* React Data Grid theme overrides */
 .rdg-light.custom-table,
 .rdg-dark.custom-table {
