@@ -48,8 +48,24 @@ export default function GenericField(props: GenericFieldProps): JSX.Element {
     return String(model.value || '')
   }
 
+  // For boolean fields in read-only mode, use flex layout to allow centering
+  const isBooleanReadOnly = !edit && model.type === 'boolean';
+  const fieldContainerStyle = isBooleanReadOnly
+    ? {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        gap: 0, // Remove gap for boolean checkbox
+      }
+    : undefined;
+
   return (
-    <div className={`${styles.field} ${className || ''}`}>
+    <div 
+      className={`${styles.field} ${className || ''}`}
+      style={fieldContainerStyle}
+    >
       {!hideLabel && (
         <label htmlFor={fieldId} className={styles.label}>
           {model.label}
@@ -116,6 +132,35 @@ export default function GenericField(props: GenericFieldProps): JSX.Element {
           )}
         </>
       ) : (() => {
+        // Special handling for boolean fields in read-only mode: show disabled checkbox
+        if (model.type === 'boolean') {
+          return (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={!!model.value}
+                disabled
+                aria-label={model.label}
+                className={styles.checkbox}
+                style={{
+                  cursor: 'default',
+                  width: '16px',
+                  height: '16px',
+                  accentColor: 'var(--primary-color, #0078d7)',
+                }}
+              />
+            </div>
+          );
+        }
+        
         const formattedValue = formatValue();
         const valueContent = formattedValue ? formattedValue : <i style={{ opacity: 0.5 }}>לא הוזן</i>;
         

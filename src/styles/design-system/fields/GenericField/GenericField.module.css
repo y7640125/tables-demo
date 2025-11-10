@@ -35,6 +35,10 @@
   accent-color: var(--table-header);
 }
 
+.checkbox:disabled {
+  cursor: default;
+}
+
 .value {
   padding: 8px 0;
   color: var(--text-color);

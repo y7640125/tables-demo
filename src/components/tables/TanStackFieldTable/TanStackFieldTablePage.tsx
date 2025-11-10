@@ -107,9 +107,15 @@ export default function TanStackFieldTablePage() {
         // Convert value to string for tooltip
         const tooltipContent = value != null ? String(value) : '';
         
+        // Special wrapper for boolean cells to ensure vertical centering
+        const isBoolean = schema.type === 'boolean';
+        const cellClassName = isBoolean 
+          ? `${styles.cell} ${styles.booleanCell}`
+          : `${styles.cell} ${ellipsisStyles.ellipsisCell}`;
+        
         return (
           <Tooltip content={tooltipContent}>
-            <div className={`${styles.cell} ${ellipsisStyles.ellipsisCell}`}>
+            <div className={cellClassName}>
               <GenericField edit={false} model={fieldModel} hideLabel={true} />
             </div>
           </Tooltip>
@@ -234,7 +240,9 @@ export default function TanStackFieldTablePage() {
                                 backgroundColor: '#202233',
                               }}
                             >
-                              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                              <div className={styles.tanStackCellWrapper}>
+                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                              </div>
                             </td>
                           ))}
                           {hoveredRow === virtualRow.index && (
