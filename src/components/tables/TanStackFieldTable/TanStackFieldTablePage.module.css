@@ -44,6 +44,19 @@
   background: #2e3144;
   color: #d6ddec;
   height: 35px;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.th.dragging {
+  opacity: 0.5;
+  cursor: grabbing !important;
+}
+
+.th.dragOver {
+  background-color: #3a3f57 !important;
+  border-left: 2px solid #0078d7;
+  border-right: 2px solid #0078d7;
 }
 
 .headerCell {
