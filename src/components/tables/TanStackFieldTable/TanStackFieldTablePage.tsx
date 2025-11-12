@@ -28,9 +28,14 @@ export default function TanStackFieldTablePage() {
   const [filters, setFilters] = useState<Record<string, Set<string>>>({});
   const [filterAnchor, setFilterAnchor] = useState<{ col: string; el: HTMLElement } | null>(null);
   const [editingRow, setEditingRow] = useState<RowData | null>(null);
+  const [addingRow, setAddingRow] = useState(false);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [draggedColumn, setDraggedColumn] = useState<string | null>(null);
   const [dragOverColumn, setDragOverColumn] = useState<string | null>(null);
+  const [selectedCells, setSelectedCells] = useState<Set<string>>(new Set());
+  const [isSelecting, setIsSelecting] = useState(false);
+  const [selectionStart, setSelectionStart] = useState<{ rowIndex: number; columnId: string } | null>(null);
+  const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
   // Compute filtered rows
@@ -201,6 +206,18 @@ export default function TanStackFieldTablePage() {
     setEditingRow(null);
   }, [editingRow]);
 
+  const handleAddRow = useCallback((newRow: RowData) => {
+    // Generate a unique ID for the new row
+    const maxId = rows.reduce((max, row) => {
+      const rowId = typeof row.id === 'string' ? parseInt(row.id, 10) : row.id;
+      return isNaN(rowId) ? max : Math.max(max, rowId);
+    }, 0);
+    const newId = (maxId + 1).toString();
+    
+    setRows(prev => [...prev, { ...newRow, id: newId }]);
+    setAddingRow(false);
+  }, [rows]);
+
   // Drag and drop handlers for column reordering
   const handleDragStart = useCallback((e: React.DragEvent, columnId: string) => {
     setDraggedColumn(columnId);
@@ -260,9 +277,152 @@ export default function TanStackFieldTablePage() {
     setDragOverColumn(null);
   }, [draggedColumn, columnOrder]);
 
+  // Cell selection handlers
+  const getCellKey = useCallback((rowIndex: number, columnId: string) => {
+    return `${rowIndex}-${columnId}`;
+  }, []);
+
+  // Get column index from column ID
+  const getColumnIndex = useCallback((columnId: string) => {
+    return visibleColumns.findIndex(col => col.name === columnId);
+  }, [visibleColumns]);
+
+  // Calculate rectangular selection
+  const calculateRectangularSelection = useCallback((startRow: number, startCol: string, endRow: number, endCol: string) => {
+    const startColIndex = getColumnIndex(startCol);
+    const endColIndex = getColumnIndex(endCol);
+    
+    const minRow = Math.min(startRow, endRow);
+    const maxRow = Math.max(startRow, endRow);
+    const minColIndex = Math.min(startColIndex, endColIndex);
+    const maxColIndex = Math.max(startColIndex, endColIndex);
+    
+    const selected = new Set<string>();
+    
+    for (let row = minRow; row <= maxRow; row++) {
+      for (let colIndex = minColIndex; colIndex <= maxColIndex; colIndex++) {
+        if (row >= 0 && row < filteredRows.length && colIndex >= 0 && colIndex < visibleColumns.length) {
+          const columnId = visibleColumns[colIndex].name;
+          selected.add(getCellKey(row, columnId));
+        }
+      }
+    }
+    
+    return selected;
+  }, [getColumnIndex, visibleColumns, filteredRows.length, getCellKey]);
+
+  const handleCellMouseDown = useCallback((e: React.MouseEvent, rowIndex: number, columnId: string) => {
+    if (e.button !== 0) return; // Only handle left mouse button
+    e.preventDefault();
+    setIsSelecting(true);
+    setSelectionStart({ rowIndex, columnId });
+    setSelectedCells(new Set([getCellKey(rowIndex, columnId)]));
+    setContextMenu(null);
+  }, [getCellKey]);
+
+  const handleCellMouseEnter = useCallback((_e: React.MouseEvent, rowIndex: number, columnId: string) => {
+    if (isSelecting && selectionStart) {
+      const newSelection = calculateRectangularSelection(
+        selectionStart.rowIndex,
+        selectionStart.columnId,
+        rowIndex,
+        columnId
+      );
+      setSelectedCells(newSelection);
+    }
+  }, [isSelecting, selectionStart, calculateRectangularSelection]);
+
+  const handleCellMouseUp = useCallback(() => {
+    setIsSelecting(false);
+    setSelectionStart(null);
+  }, []);
+
+  // Copy functionality
+  const handleCopy = useCallback(() => {
+    if (selectedCells.size === 0) return;
+    
+    const cellData: string[] = [];
+    const rows = new Map<number, Map<string, string>>();
+    
+    selectedCells.forEach(cellKey => {
+      const [rowIndexStr, columnId] = cellKey.split('-');
+      const rowIndex = parseInt(rowIndexStr, 10);
+      const row = filteredRows[rowIndex];
+      if (row) {
+        const value = row[columnId];
+        const cellValue = value != null ? String(value) : '';
+        if (!rows.has(rowIndex)) {
+          rows.set(rowIndex, new Map());
+        }
+        rows.get(rowIndex)!.set(columnId, cellValue);
+      }
+    });
+    
+    // Sort by row index and column order
+    const sortedRows = Array.from(rows.keys()).sort((a, b) => a - b);
+    sortedRows.forEach(rowIndex => {
+      const rowCells = rows.get(rowIndex)!;
+      const sortedColumns = visibleColumns
+        .filter(col => rowCells.has(col.name))
+        .map(col => rowCells.get(col.name)!);
+      if (sortedColumns.length > 0) {
+        cellData.push(sortedColumns.join('\t'));
+      }
+    });
+    
+    if (cellData.length > 0) {
+      navigator.clipboard.writeText(cellData.join('\n'));
+    }
+  }, [selectedCells, filteredRows, visibleColumns]);
+
+  // Keyboard handler for copy
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'c' && selectedCells.size > 0) {
+        e.preventDefault();
+        handleCopy();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedCells, handleCopy]);
+
+  // Right-click context menu
+  const handleCellContextMenu = useCallback((e: React.MouseEvent, rowIndex: number, columnId: string) => {
+    e.preventDefault();
+    setContextMenu({ x: e.clientX, y: e.clientY });
+    
+    // If this cell is not selected, select only this cell
+    const cellKey = getCellKey(rowIndex, columnId);
+    if (!selectedCells.has(cellKey)) {
+      setSelectedCells(new Set([cellKey]));
+    }
+  }, [selectedCells, getCellKey]);
+
+  // Close context menu when clicking outside
+  useEffect(() => {
+    const handleClick = () => setContextMenu(null);
+    if (contextMenu) {
+      window.addEventListener('click', handleClick);
+      return () => window.removeEventListener('click', handleClick);
+    }
+  }, [contextMenu]);
+
   return (
-    <div className={styles.container} dir="rtl">
+    <div 
+      className={styles.container} 
+      dir="rtl"
+      onMouseUp={handleCellMouseUp}
+      onMouseLeave={handleCellMouseUp}
+    >
       <div className={styles.toolbar}>
+        <Button
+          onClick={() => setAddingRow(true)}
+          style={{ marginInlineEnd: '0.5rem' }}
+        >
+          ➕ הוסף שורה
+        </Button>
         <Button
           onClick={() => setHiddenEmptyColumns(!hiddenEmptyColumns)}
         >
@@ -339,21 +499,30 @@ export default function TanStackFieldTablePage() {
                           onMouseEnter={() => setHoveredRow(virtualRow.index)}
                           onMouseLeave={() => setHoveredRow(null)}
                         >
-                          {row.getVisibleCells().map(cell => (
-                            <td 
-                              key={cell.id} 
-                              className={styles.td} 
-                              style={{ 
-                                width: Math.min(Math.max(cell.column.getSize(), 80), 200),
-                                height: '35px',
-                                backgroundColor: '#202233',
-                              }}
-                            >
-                              <div className={styles.tanStackCellWrapper}>
-                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                              </div>
-                            </td>
-                          ))}
+                          {row.getVisibleCells().map(cell => {
+                            const cellKey = getCellKey(virtualRow.index, cell.column.id);
+                            const isSelected = selectedCells.has(cellKey);
+                            
+                            return (
+                              <td 
+                                key={cell.id} 
+                                className={styles.td} 
+                                style={{ 
+                                  width: Math.min(Math.max(cell.column.getSize(), 80), 200),
+                                  height: '35px',
+                                  backgroundColor: isSelected ? '#ff69b4' : '#202233',
+                                }}
+                                onMouseDown={(e) => handleCellMouseDown(e, virtualRow.index, cell.column.id)}
+                                onMouseEnter={(e) => handleCellMouseEnter(e, virtualRow.index, cell.column.id)}
+                                onMouseUp={handleCellMouseUp}
+                                onContextMenu={(e) => handleCellContextMenu(e, virtualRow.index, cell.column.id)}
+                              >
+                                <div className={styles.tanStackCellWrapper} style={{ backgroundColor: isSelected ? '#ff69b4' : 'transparent' }}>
+                                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </div>
+                              </td>
+                            );
+                          })}
                           {hoveredRow === virtualRow.index && (
                             <td className={styles.actionsCell}>
                               <IconButton onClick={() => setEditingRow(row.original)} title="עריכה">
@@ -418,6 +587,54 @@ export default function TanStackFieldTablePage() {
           onClose={() => setEditingRow(null)}
         />
       )}
+
+      {addingRow && (
+        <AddRowModal
+          schema={tableData.schema}
+          onSave={handleAddRow}
+          onClose={() => setAddingRow(false)}
+        />
+      )}
+
+      {contextMenu && (
+        <div
+          style={{
+            position: 'fixed',
+            left: contextMenu.x,
+            top: contextMenu.y,
+            backgroundColor: '#2e3144',
+            border: '1px solid #5e636c80',
+            borderRadius: '4px',
+            padding: '4px',
+            zIndex: 10000,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+            direction: 'rtl',
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={() => {
+              handleCopy();
+              setContextMenu(null);
+            }}
+            style={{
+              display: 'block',
+              width: '100%',
+              padding: '8px 12px',
+              background: 'transparent',
+              border: 'none',
+              color: '#d6ddec',
+              cursor: 'pointer',
+              textAlign: 'right',
+              fontSize: '14px',
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3a3f57'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+          >
+            העתק
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -459,6 +676,92 @@ function EditRowModal({
         </div>
         <div className={styles.modalActions}>
           <Button onClick={() => onSave(editedRow)}>שמור</Button>
+          <Button onClick={onClose}>ביטול</Button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+function AddRowModal({
+  schema,
+  onSave,
+  onClose,
+}: {
+  schema: FieldSchema[];
+  onSave: (row: RowData) => void;
+  onClose: () => void;
+}) {
+  // Initialize form with default values based on field type
+  const getDefaultValue = (field: FieldSchema): any => {
+    switch (field.type) {
+      case 'boolean':
+        return false;
+      case 'date':
+        return '';
+      case 'enum':
+        return field.options?.[0]?.value || '';
+      case 'text':
+      case 'textarea':
+      default:
+        return '';
+    }
+  };
+
+  const [newRow, setNewRow] = useState<RowData>(() => {
+    const initialRow: RowData = {};
+    schema.forEach(field => {
+      // Skip id field - it will be generated on save
+      if (field.name !== 'id') {
+        initialRow[field.name] = getDefaultValue(field);
+      }
+    });
+    return initialRow;
+  });
+
+  const handleSave = useCallback(() => {
+    onSave(newRow);
+  }, [newRow, onSave]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      handleSave();
+    } else if (e.key === 'Escape') {
+      onClose();
+    }
+  }, [handleSave, onClose]);
+
+  return (
+    <Modal open={true} onClose={onClose}>
+      <div className={styles.modalContent} onKeyDown={handleKeyDown}>
+        <h2>הוספת שורה חדשה</h2>
+        <div className={styles.editForm}>
+          {schema.map(field => {
+            // Skip id field in the form - it will be auto-generated
+            if (field.name === 'id') {
+              return null;
+            }
+            
+            return (
+              <GenericField
+                key={field.name}
+                edit={true}
+                model={{
+                  name: field.name,
+                  label: field.label,
+                  type: field.type,
+                  value: newRow[field.name],
+                  options: field.options,
+                }}
+                onChange={(value) => {
+                  setNewRow(prev => ({ ...prev, [field.name]: value }));
+                }}
+              />
+            );
+          })}
+        </div>
+        <div className={styles.modalActions}>
+          <Button onClick={handleSave}>שמור</Button>
           <Button onClick={onClose}>ביטול</Button>
         </div>
       </div>
