@@ -157,7 +157,7 @@ export default function TanStackFieldTablePage() {
         return (
           <Tooltip content={tooltipContent}>
             <div className={cellClassName}>
-              <GenericField edit={false} model={fieldModel} hideLabel={true} />
+              <GenericField edit={false} model={fieldModel} hideLabel={true} truncate={true} />
             </div>
           </Tooltip>
         );

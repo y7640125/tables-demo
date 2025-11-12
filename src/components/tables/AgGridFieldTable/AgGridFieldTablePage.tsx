@@ -163,7 +163,7 @@ export default function AgGridFieldTablePage() {
           return (
             <Tooltip content={tooltipContent}>
               <div className={styles.cell}>
-                <GenericField edit={false} model={fieldModel} hideLabel={true} />
+                <GenericField edit={false} model={fieldModel} hideLabel={true} truncate={true} />
               </div>
             </Tooltip>
           );
