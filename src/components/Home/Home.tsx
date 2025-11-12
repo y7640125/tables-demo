@@ -11,9 +11,9 @@ export default function Home() {
     <div className={styles.container}>
       <h1 className={styles.header}>בחירת טבלה</h1>
       <div className={styles.buttons}>
-        <Button onClick={() => navigate("/tanstack-advanced")}>טבלת TanStack מתקדמת</Button>
-        <Button onClick={() => navigate("/ag-grid-advanced")}>טבלת AG Grid מתקדמת</Button>
-        <Button onClick={() => navigate("/rdg-advanced")}>טבלת React Data Grid מתקדמת</Button>
+        <Button onClick={() => navigate("/tanstack-advanced")}>טבלת TanStack</Button>
+        <Button onClick={() => navigate("/ag-grid-advanced")}>טבלת AG Grid</Button>
+        <Button onClick={() => navigate("/rdg-advanced")}>טבלת React Data Grid</Button>
       </div>
 
     </div>

@@ -20,6 +20,68 @@ import ellipsisStyles from '../../../styles/design-system/TableEllipsis.module.c
 
 type RowData = Record<string, any>;
 
+// Component that only shows tooltip if content overflows
+function CellWithConditionalTooltip({ 
+  children, 
+  tooltipContent,
+  className 
+}: { 
+  children: React.ReactNode; 
+  tooltipContent: string;
+  className?: string;
+}) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (!contentRef.current) return;
+      
+      // Check the main element and all its descendants for overflow
+      const checkElement = (element: Element): boolean => {
+        const hasOverflow = element.scrollWidth > element.clientWidth || 
+                           element.scrollHeight > element.clientHeight;
+        
+        if (hasOverflow) return true;
+        
+        // Check all children recursively
+        for (let i = 0; i < element.children.length; i++) {
+          if (checkElement(element.children[i])) {
+            return true;
+          }
+        }
+        
+        return false;
+      };
+      
+      setIsOverflowing(checkElement(contentRef.current));
+    };
+
+    // Check immediately and after a short delay to ensure DOM is fully rendered
+    checkOverflow();
+    const timeoutId = setTimeout(checkOverflow, 50);
+    
+    // Recheck on window resize
+    window.addEventListener('resize', checkOverflow);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', checkOverflow);
+    };
+  }, [children, tooltipContent]);
+
+  const content = (
+    <div ref={contentRef} className={className}>
+      {children}
+    </div>
+  );
+
+  return isOverflowing ? (
+    <Tooltip content={tooltipContent}>
+      {content}
+    </Tooltip>
+  ) : content;
+}
+
 export default function TanStackFieldTablePage() {
   const tableData = data as TableData;
   const [rows, setRows] = useState<RowData[]>(tableData.rows);
@@ -155,11 +217,12 @@ export default function TanStackFieldTablePage() {
           : `${styles.cell} ${ellipsisStyles.ellipsisCell}`;
         
         return (
-          <Tooltip content={tooltipContent}>
-            <div className={cellClassName}>
-              <GenericField edit={false} model={fieldModel} hideLabel={true} truncate={true} />
-            </div>
-          </Tooltip>
+          <CellWithConditionalTooltip 
+            tooltipContent={tooltipContent}
+            className={cellClassName}
+          >
+            <GenericField edit={false} model={fieldModel} hideLabel={true} truncate={true} />
+          </CellWithConditionalTooltip>
         );
       },
       accessorKey: schema.name,

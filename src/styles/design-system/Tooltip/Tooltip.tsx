@@ -20,13 +20,19 @@ interface TooltipProps {
  */
 export default function Tooltip({ content, children }: TooltipProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isPositioned, setIsPositioned] = useState(false);
   const [position, setPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
   const wrapperRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const tooltipId = useRef(`tooltip-${Math.random().toString(36).substr(2, 9)}`);
 
   useEffect(() => {
-    if (!isVisible || !wrapperRef.current || !tooltipRef.current) return;
+    if (!isVisible) {
+      setIsPositioned(false);
+      return;
+    }
+    
+    if (!wrapperRef.current || !tooltipRef.current) return;
 
     const updatePosition = () => {
       if (!wrapperRef.current || !tooltipRef.current) return;
@@ -52,6 +58,7 @@ export default function Tooltip({ content, children }: TooltipProps) {
       }
       
       setPosition({ top, left });
+      setIsPositioned(true);
     };
 
     // Use double requestAnimationFrame to ensure portal-rendered tooltip is in DOM
@@ -110,9 +117,10 @@ export default function Tooltip({ content, children }: TooltipProps) {
           role="tooltip"
           style={{
             position: 'fixed',
-            top: position.top,
-            left: position.left,
+            top: isPositioned ? position.top : -9999,
+            left: isPositioned ? position.left : -9999,
             zIndex: 10000,
+            visibility: isPositioned ? 'visible' : 'hidden',
           }}
         >
           {content}
