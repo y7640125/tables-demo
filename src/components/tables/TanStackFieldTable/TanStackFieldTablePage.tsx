@@ -247,6 +247,7 @@ export default function TanStackFieldTablePage() {
     onSortingChange: setSorting,
     onColumnOrderChange: setColumnOrder,
     columnResizeMode: 'onChange',
+    columnResizeDirection: 'rtl',
   });
 
   // Virtualization - only virtualize rows
