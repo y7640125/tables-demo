@@ -532,9 +532,23 @@ export default function TanStackFieldTablePage() {
                       >
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         <div
-                          onMouseDown={header.getResizeHandler()}
-                          onTouchStart={header.getResizeHandler()}
+                          onMouseDown={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            const resizeHandler = header.getResizeHandler();
+                            if (resizeHandler) {
+                              resizeHandler(e);
+                            }
+                          }}
+                          onTouchStart={(e) => {
+                            e.stopPropagation();
+                            const resizeHandler = header.getResizeHandler();
+                            if (resizeHandler) {
+                              resizeHandler(e);
+                            }
+                          }}
                           className={styles.resizer}
+                          draggable={false}
                         />
                       </th>
                     );
