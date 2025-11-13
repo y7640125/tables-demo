@@ -47,7 +47,38 @@
   border-bottom: 1px solid var(--table-border);
 }
 
-.clearButton {
+.searchContainer {
+  margin-bottom: 0.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  border: 1px solid var(--table-border);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.searchInput:focus {
+  border-color: #4a90e2;
+}
+
+.searchInput::placeholder {
+  color: #888;
+  opacity: 0.7;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.clearButton,
+.selectAllButton {
   background-color: var(--table-header);
   color: var(--text-color);
   border: 1px solid var(--table-border);
@@ -58,8 +89,17 @@
   transition: background 0.2s ease-in-out;
 }
 
-.clearButton:hover {
+.clearButton:hover,
+.selectAllButton:hover {
   background-color: #3a3f57;
+}
+
+.selectAllButton {
+  background-color: #2a4a7c;
+}
+
+.selectAllButton:hover {
+  background-color: #365a94;
 }
 
 .checkboxList {
@@ -83,5 +123,13 @@
 
 .checkboxItem input {
   cursor: pointer;
+}
+
+.noResults {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  font-size: 0.875rem;
 }
 

@@ -126,8 +126,32 @@ function FilterHeader({
       style={dropdownStyle}
       className={styles.filterDropdownPortal}
     >
-      {hasActiveFilter && (
-        <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: '1px solid #5e636c80' }}>
+      <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: '1px solid #5e636c80', display: 'flex', gap: 4 }}>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setFilters(prev => {
+              const allValuesSet = new Set(values);
+              return { ...prev, [column.key]: allValuesSet };
+            });
+          }}
+          style={{
+            background: '#2a4a7c',
+            color: '#d6ddec',
+            border: '1px solid #5e636c80',
+            padding: '4px 8px',
+            borderRadius: 4,
+            cursor: 'pointer',
+            fontSize: 12,
+            flex: 1,
+            transition: 'background 0.2s',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.background = '#365a94'}
+          onMouseLeave={(e) => e.currentTarget.style.background = '#2a4a7c'}
+        >
+          בחר הכל
+        </button>
+        {hasActiveFilter && (
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -145,7 +169,7 @@ function FilterHeader({
               borderRadius: 4,
               cursor: 'pointer',
               fontSize: 12,
-              width: '100%',
+              flex: 1,
               transition: 'background 0.2s',
             }}
             onMouseEnter={(e) => e.currentTarget.style.background = '#3a3d55'}
@@ -153,8 +177,8 @@ function FilterHeader({
           >
             נקה סינון
           </button>
-        </div>
-      )}
+        )}
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         {values.length > 0 ? (
           values.map(v => {

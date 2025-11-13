@@ -9,6 +9,7 @@ interface ColumnFilterPopoverProps {
   selected: Set<string>;
   onToggle: (value: string) => void;
   onClear: () => void;
+  onSelectAll?: () => void;
 }
 
 export default function ColumnFilterPopover({
@@ -19,9 +20,11 @@ export default function ColumnFilterPopover({
   selected,
   onToggle,
   onClear,
+  onSelectAll,
 }: ColumnFilterPopoverProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
@@ -39,6 +42,20 @@ export default function ColumnFilterPopover({
     const rect = anchor.getBoundingClientRect();
     setPos({ top: rect.bottom + window.scrollY + 6, left: rect.right + window.scrollX - 200 });
   }, [anchor, open]);
+
+  // Reset search term when popover closes
+  useEffect(() => {
+    if (!open) {
+      setSearchTerm('');
+    }
+  }, [open]);
+
+  // Filter values based on search term
+  const filteredValues = values.filter(value => {
+    const searchLower = searchTerm.toLowerCase();
+    const valueLower = (value || '').toLowerCase();
+    return valueLower.includes(searchLower);
+  });
 
   if (!open) return null;
 
@@ -58,21 +75,51 @@ export default function ColumnFilterPopover({
       <div className={`${styles.popoverContent} filter-dropdown`}>
         <div className={styles.header}>
           <span>סינון</span>
-          <button onClick={onClear} className={styles.clearButton}>
-            נקה סינון
-          </button>
+          <div className={styles.buttonGroup}>
+            {onSelectAll && (
+              <button onClick={onSelectAll} className={styles.selectAllButton}>
+                בחר הכל
+              </button>
+            )}
+            <button onClick={onClear} className={styles.clearButton}>
+              נקה סינון
+            </button>
+          </div>
+        </div>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            className={styles.searchInput}
+            placeholder="חיפוש..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            autoFocus
+          />
         </div>
         <div className={styles.checkboxList}>
-          {values.map((value) => (
-            <label key={value} className={styles.checkboxItem}>
-              <input
-                type="checkbox"
-                checked={selected.has(value)}
-                onChange={() => onToggle(value)}
-              />
-              <span>{value || <span style={{ fontStyle: 'italic', opacity: 0.7 }}>לא הוזן</span>}</span>
-            </label>
-          ))}
+          {filteredValues.length > 0 ? (
+            filteredValues.map((value) => (
+              <label 
+                key={value} 
+                className={styles.checkboxItem}
+                onMouseDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.has(value)}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    onToggle(value);
+                  }}
+                  onMouseDown={(e) => e.stopPropagation()}
+                />
+                <span>{value || <span style={{ fontStyle: 'italic', opacity: 0.7 }}>לא הוזן</span>}</span>
+              </label>
+            ))
+          ) : (
+            <div className={styles.noResults}>לא נמצאו תוצאות</div>
+          )}
         </div>
       </div>
     </div>

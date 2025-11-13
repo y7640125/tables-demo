@@ -420,7 +420,7 @@ export default function AgGridFieldTablePage() {
           anchor={filterAnchor.el}
           open={true}
           onClose={() => setFilterAnchor(null)}
-          values={getUniqueValues(filterAnchor.col, filteredRows)}
+          values={getUniqueValues(filterAnchor.col, rows)}
           selected={filters[filterAnchor.col] || new Set()}
           onToggle={(value) => {
             setFilters(prev => {
@@ -439,6 +439,12 @@ export default function AgGridFieldTablePage() {
               const newFilters = { ...prev };
               delete newFilters[filterAnchor.col];
               return newFilters;
+            });
+          }}
+          onSelectAll={() => {
+            setFilters(prev => {
+              const allValues = getUniqueValues(filterAnchor.col, rows);
+              return { ...prev, [filterAnchor.col]: new Set(allValues) };
             });
           }}
         />
