@@ -5,4 +5,5 @@ export * from './Popover';
 export * from './Toolbar';
 export * from './Tooltip';
 export * from './fields';
+export { default as ColumnFilterPopover } from './ColumnFilterPopover';
 

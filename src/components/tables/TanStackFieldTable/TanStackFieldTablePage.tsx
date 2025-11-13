@@ -11,10 +11,9 @@ import {
 import { useVirtualizer } from '@tanstack/react-virtual';
 import data from '../../../assets/mock-table-data.json';
 import GenericField from '../../../styles/design-system/fields/GenericField';
-import { Modal, IconButton, Button, Tooltip } from '../../../styles/design-system';
+import { Modal, IconButton, Button, Tooltip, ColumnFilterPopover } from '../../../styles/design-system';
 import { strongId, isEmptyColumn, getUniqueValues, type FieldSchema, type TableData } from '../../../utils/tableUtils';
 import EmptyCell from '../../shared/EmptyCell';
-import ColumnFilterPopover from '../../shared/ColumnFilterPopover';
 import styles from './TanStackFieldTablePage.module.css';
 import ellipsisStyles from '../../../styles/design-system/TableEllipsis.module.css';
 

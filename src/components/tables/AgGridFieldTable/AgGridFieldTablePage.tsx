@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useRef, useEffect, useLayoutEffect } from 'react';
+import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 import type { ColDef, GridApi, ICellRendererParams, IHeaderParams } from 'ag-grid-community';
@@ -8,10 +8,9 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
 ModuleRegistry.registerModules([AllCommunityModule]);
 import data from '../../../assets/mock-table-data.json';
 import GenericField from '../../../styles/design-system/fields/GenericField';
-import { Modal, IconButton, Button, Tooltip } from '../../../styles/design-system';
+import { Modal, IconButton, Button, Tooltip, ColumnFilterPopover } from '../../../styles/design-system';
 import { strongId, isEmptyColumn, getUniqueValues, type FieldSchema, type TableData } from '../../../utils/tableUtils';
 import EmptyCell from '../../shared/EmptyCell';
-import ColumnFilterPopover from '../../shared/ColumnFilterPopover';
 import styles from './AgGridFieldTablePage.module.css';
 // Import for side effects - applies ellipsis styles to .ag-theme-quartz .ag-cell
 import '../../../styles/design-system/TableEllipsis.module.css';
@@ -88,7 +87,7 @@ function CellWithConditionalTooltip({
     // Check on next animation frame
     const rafId1 = requestAnimationFrame(() => {
       checkOverflow();
-      const rafId2 = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         checkOverflow();
       });
     });

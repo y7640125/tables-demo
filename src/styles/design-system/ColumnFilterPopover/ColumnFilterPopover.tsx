@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './ColumnFilterPopover.module.css';
 
 interface ColumnFilterPopoverProps {
@@ -125,3 +125,4 @@ export default function ColumnFilterPopover({
     </div>
   );
 }
+

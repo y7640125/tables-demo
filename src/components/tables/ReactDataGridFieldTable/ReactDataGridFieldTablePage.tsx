@@ -1,59 +1,17 @@
-import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { useMemo, useState, useCallback, useRef } from 'react';
 import DataGrid, { type Column } from 'react-data-grid';
 import 'react-data-grid/lib/styles.css';
 import data from '../../../assets/mock-table-data.json';
 import GenericField from '../../../styles/design-system/fields/GenericField';
-import { Modal, Button } from '../../../styles/design-system';
-import { strongId, isEmptyColumn, type FieldSchema, type TableData } from '../../../utils/tableUtils';
+import { Modal, Button, ColumnFilterPopover } from '../../../styles/design-system';
+import { strongId, isEmptyColumn, getUniqueValues, type FieldSchema, type TableData } from '../../../utils/tableUtils';
 import EmptyCell from '../../shared/EmptyCell';
 import styles from './ReactDataGridFieldTablePage.module.css';
 
 type RowData = Record<string, any> & { id: string };
 
-// Filter Icon SVG Component (funnel shape)
-function FilterIcon({ size = 14 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 14 14"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ display: 'block' }}
-    >
-      <path
-        d="M2 2.5H12L10 6.5H4L2 2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      <line
-        x1="6"
-        y1="6.5"
-        x2="6"
-        y2="11.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
-      <line
-        x1="4.5"
-        y1="9.5"
-        x2="7.5"
-        y2="9.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-// Filter Header Component with Portal support
-function FilterHeader({ 
+// Filter Header Component using ColumnFilterPopover
+function RDGFilterHeader({ 
   column, 
   allRows, 
   filters, 
@@ -64,177 +22,15 @@ function FilterHeader({
   filters: Record<string, Set<any>>;
   setFilters: React.Dispatch<React.SetStateAction<Record<string, Set<any>>>>;
 }) {
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef<HTMLSpanElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filterAnchor, setFilterAnchor] = useState<HTMLElement | null>(null);
   
   const values = useMemo(() => {
-    const arr = allRows.map(r => strongId(r[column.key]));
-    const uniq = Array.from(new Set(arr.filter(v => v !== undefined && v !== null && v !== '')));
-    return uniq.length ? uniq.sort() : [];
+    return getUniqueValues(column.key, allRows);
   }, [allRows, column.key]);
   
-  const selected = filters[column.key] ?? new Set();
+  const selected = filters[column.key] ?? new Set<string>();
   const hasActiveFilter = selected.size > 0;
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    if (!open) return;
-    
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (
-        anchorRef.current && !anchorRef.current.contains(target) &&
-        dropdownRef.current && !dropdownRef.current.contains(target)
-      ) {
-        setOpen(false);
-      }
-    };
-    
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [open]);
-
-  // Calculate dropdown position
-  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
-  
-  useEffect(() => {
-    if (open && anchorRef.current) {
-      const rect = anchorRef.current.getBoundingClientRect();
-      setDropdownStyle({
-        position: 'fixed',
-        zIndex: 9999,
-        insetInlineEnd: window.innerWidth - rect.right,
-        top: rect.bottom + 4,
-        background: '#2e3144',
-        border: '1px solid #5e636c80',
-        borderRadius: 8,
-        padding: 8,
-        maxHeight: 180,
-        overflowY: 'auto',
-        color: '#d6ddec',
-        direction: 'rtl',
-        minWidth: 160,
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
-      });
-    }
-  }, [open]);
-
-  const dropdown = open ? createPortal(
-    <div 
-      ref={dropdownRef} 
-      style={dropdownStyle}
-      className={styles.filterDropdownPortal}
-    >
-      <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: '1px solid #5e636c80', display: 'flex', gap: 4 }}>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setFilters(prev => {
-              const allValuesSet = new Set(values);
-              return { ...prev, [column.key]: allValuesSet };
-            });
-          }}
-          style={{
-            background: '#2a4a7c',
-            color: '#d6ddec',
-            border: '1px solid #5e636c80',
-            padding: '4px 8px',
-            borderRadius: 4,
-            cursor: 'pointer',
-            fontSize: 12,
-            flex: 1,
-            transition: 'background 0.2s',
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.background = '#365a94'}
-          onMouseLeave={(e) => e.currentTarget.style.background = '#2a4a7c'}
-        >
-          בחר הכל
-        </button>
-        {hasActiveFilter && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setFilters(prev => {
-                const next = { ...prev };
-                delete next[column.key];
-                return next;
-              });
-            }}
-            style={{
-              background: '#202233',
-              color: '#d6ddec',
-              border: '1px solid #5e636c80',
-              padding: '4px 8px',
-              borderRadius: 4,
-              cursor: 'pointer',
-              fontSize: 12,
-              flex: 1,
-              transition: 'background 0.2s',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.background = '#3a3d55'}
-            onMouseLeave={(e) => e.currentTarget.style.background = '#202233'}
-          >
-            נקה סינון
-          </button>
-        )}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {values.length > 0 ? (
-          values.map(v => {
-            const label = String(v);
-            const isChecked = selected.has(label);
-            return (
-              <label 
-                key={label} 
-                style={{ 
-                  display: 'flex', 
-                  gap: 6, 
-                  alignItems: 'center', 
-                  padding: '4px',
-                  borderRadius: 4,
-                  cursor: 'pointer',
-                  transition: 'background 0.2s',
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = '#202233'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-              >
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setFilters(prev => {
-                      const next = new Set(prev[column.key] ?? []);
-                      if (e.target.checked) {
-                        next.add(label);
-                      } else {
-                        next.delete(label);
-                      }
-                      const newFilters = { ...prev };
-                      if (next.size > 0) {
-                        newFilters[column.key] = next;
-                      } else {
-                        delete newFilters[column.key];
-                      }
-                      return newFilters;
-                    });
-                  }}
-                  style={{ cursor: 'pointer', margin: 0 }}
-                />
-                <span>{label || <i style={{ opacity: 0.7 }}>לא הוזן</i>}</span>
-              </label>
-            );
-          })
-        ) : (
-          <span style={{ padding: '8px', fontSize: 12, opacity: 0.7, fontStyle: 'italic' }}>
-            אין ערכים לסינון
-          </span>
-        )}
-      </div>
-    </div>,
-    document.body
-  ) : null;
 
   const columnName = typeof column.name === 'string' ? column.name : '';
   
@@ -244,10 +40,10 @@ function FilterHeader({
         <span>{columnName || column.name}</span>
       </div>
       <span 
-        ref={anchorRef} 
         onClick={(e) => {
           e.stopPropagation();
-          setOpen(o => !o);
+          setFilterAnchor(e.currentTarget);
+          setFilterOpen(true);
         }} 
         style={{ 
           cursor: 'pointer',
@@ -267,9 +63,45 @@ function FilterHeader({
         }}
         title="סינון"
       >
-        <FilterIcon size={14} />
+        🔽
       </span>
-      {dropdown}
+      <ColumnFilterPopover
+        anchor={filterAnchor}
+        open={filterOpen}
+        onClose={() => setFilterOpen(false)}
+        values={values}
+        selected={selected}
+        onToggle={(value) => {
+          setFilters(prev => {
+            const next = new Set(prev[column.key] ?? []);
+            if (next.has(value)) {
+              next.delete(value);
+            } else {
+              next.add(value);
+            }
+            const newFilters = { ...prev };
+            if (next.size > 0) {
+              newFilters[column.key] = next;
+            } else {
+              delete newFilters[column.key];
+            }
+            return newFilters;
+          });
+        }}
+        onClear={() => {
+          setFilters(prev => {
+            const next = { ...prev };
+            delete next[column.key];
+            return next;
+          });
+        }}
+        onSelectAll={() => {
+          setFilters(prev => {
+            const allValuesSet = new Set(values);
+            return { ...prev, [column.key]: allValuesSet };
+          });
+        }}
+      />
     </div>
   );
 }
@@ -367,7 +199,7 @@ export default function ReactDataGridFieldTablePage() {
       // Apply header renderer - try v8 first (renderHeaderCell), fallback to v7 (headerRenderer)
       // Check if renderHeaderCell is available in DataGrid type
       const headerRendererFn = (p: { column: Column<RowData> }) => (
-        <FilterHeader 
+        <RDGFilterHeader 
           column={{ key: p.column.key as string, name: schema.label }} 
           allRows={rows} 
           filters={filters} 
