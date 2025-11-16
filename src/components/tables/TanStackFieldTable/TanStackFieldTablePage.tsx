@@ -191,11 +191,7 @@ export default function TanStackFieldTablePage() {
         const strongIdValue = strongId(value);
         
         if (!strongIdValue) {
-          return (
-            <Tooltip content="לא הוזן">
-              <EmptyCell />
-            </Tooltip>
-          );
+          return <EmptyCell />;
         }
         
         const fieldModel = {

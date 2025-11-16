@@ -264,11 +264,7 @@ export default function AgGridFieldTablePage() {
           const strongIdValue = strongId(value);
           
           if (!strongIdValue) {
-            return (
-              <Tooltip content="לא הוזן">
-                <EmptyCell />
-              </Tooltip>
-            );
+            return <EmptyCell />;
           }
           
           // Find schema for this field
