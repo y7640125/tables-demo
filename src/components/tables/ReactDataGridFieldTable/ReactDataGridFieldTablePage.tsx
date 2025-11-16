@@ -123,6 +123,7 @@ export default function ReactDataGridFieldTablePage() {
   const [hiddenEmptyColumns, setHiddenEmptyColumns] = useState(false);
   const [filters, setFilters] = useState<Record<string, Set<any>>>({});
   const [editingRow, setEditingRow] = useState<RowData | null>(null);
+  const [addingRow, setAddingRow] = useState(false);
   const [sortColumns, setSortColumns] = useState<readonly { columnKey: string; direction: 'ASC' | 'DESC' }[]>([]);
   const [selectedRows, setSelectedRows] = useState<ReadonlySet<string>>(new Set());
   const gridRef = useRef<HTMLDivElement>(null);
@@ -236,6 +237,18 @@ export default function ReactDataGridFieldTablePage() {
     setEditingRow(null);
   }, [editingRow]);
 
+  const handleAddRow = useCallback((newRow: RowData) => {
+    // Generate a unique ID for the new row
+    const maxId = rows.reduce((max, row) => {
+      const rowId = typeof row.id === 'string' ? parseInt(row.id, 10) : row.id;
+      return isNaN(rowId) ? max : Math.max(max, rowId);
+    }, 0);
+    const newId = (maxId + 1).toString();
+    
+    setRows(prev => [...prev, { ...newRow, id: newId }]);
+    setAddingRow(false);
+  }, [rows]);
+
   // Handle copy to clipboard
   const handleCopy = useCallback(() => {
     if (selectedRows.size === 0) return;
@@ -266,6 +279,12 @@ export default function ReactDataGridFieldTablePage() {
   return (
     <div className={styles.container} dir="rtl" onKeyDown={handleKeyDown}>
       <div className={styles.toolbar}>
+        <Button
+          onClick={() => setAddingRow(true)}
+          style={{ marginInlineEnd: '0.5rem' }}
+        >
+          ➕ הוסף שורה
+        </Button>
         <Button
           onClick={() => setHiddenEmptyColumns(!hiddenEmptyColumns)}
         >
@@ -306,6 +325,14 @@ export default function ReactDataGridFieldTablePage() {
           schema={tableData.schema}
           onSave={handleSaveEdit}
           onClose={() => setEditingRow(null)}
+        />
+      )}
+
+      {addingRow && (
+        <AddRowModal
+          schema={tableData.schema}
+          onSave={handleAddRow}
+          onClose={() => setAddingRow(false)}
         />
       )}
     </div>
@@ -349,6 +376,92 @@ function EditRowModal({
         </div>
         <div className={styles.modalActions}>
           <Button onClick={() => onSave(editedRow)}>שמור</Button>
+          <Button onClick={onClose}>ביטול</Button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+function AddRowModal({
+  schema,
+  onSave,
+  onClose,
+}: {
+  schema: FieldSchema[];
+  onSave: (row: RowData) => void;
+  onClose: () => void;
+}) {
+  // Initialize form with default values based on field type
+  const getDefaultValue = (field: FieldSchema): any => {
+    switch (field.type) {
+      case 'boolean':
+        return false;
+      case 'date':
+        return '';
+      case 'enum':
+        return field.options?.[0]?.value || '';
+      case 'text':
+      case 'textarea':
+      default:
+        return '';
+    }
+  };
+
+  const [newRow, setNewRow] = useState<RowData>(() => {
+    const initialRow: RowData = {};
+    schema.forEach(field => {
+      // Skip id field - it will be generated on save
+      if (field.name !== 'id') {
+        initialRow[field.name] = getDefaultValue(field);
+      }
+    });
+    return initialRow;
+  });
+
+  const handleSave = useCallback(() => {
+    onSave(newRow);
+  }, [newRow, onSave]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      handleSave();
+    } else if (e.key === 'Escape') {
+      onClose();
+    }
+  }, [handleSave, onClose]);
+
+  return (
+    <Modal open={true} onClose={onClose}>
+      <div className={styles.modalContent} onKeyDown={handleKeyDown}>
+        <h2>הוספת שורה חדשה</h2>
+        <div className={styles.editForm}>
+          {schema.map(field => {
+            // Skip id field in the form - it will be auto-generated
+            if (field.name === 'id') {
+              return null;
+            }
+            
+            return (
+              <GenericField
+                key={field.name}
+                edit={true}
+                model={{
+                  name: field.name,
+                  label: field.label,
+                  type: field.type,
+                  value: newRow[field.name],
+                  options: normalizeOptions(field.options),
+                }}
+                onChange={(value) => {
+                  setNewRow(prev => ({ ...prev, [field.name]: value }));
+                }}
+              />
+            );
+          })}
+        </div>
+        <div className={styles.modalActions}>
+          <Button onClick={handleSave}>שמור</Button>
           <Button onClick={onClose}>ביטול</Button>
         </div>
       </div>
