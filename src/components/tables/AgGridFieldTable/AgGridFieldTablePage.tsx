@@ -17,6 +17,16 @@ import '../../../styles/design-system/TableEllipsis.module.css';
 
 type RowData = Record<string, any>;
 
+// Normalize options: handle both string arrays and object arrays
+const normalizeOptions = (opts?: any[]): { value: string; label: string }[] | undefined => {
+  if (!opts || opts.length === 0) return undefined;
+  // Check if first option is a string or object
+  if (typeof opts[0] === 'string') {
+    return opts.map(opt => ({ value: opt, label: opt }));
+  }
+  return opts.map(opt => ({ value: opt.value, label: opt.label }));
+};
+
 // Cell component that only shows tooltip when text overflows
 function CellWithConditionalTooltip({ 
   children, 
@@ -275,7 +285,7 @@ export default function AgGridFieldTablePage() {
             label: fieldSchema.label,
             type: fieldSchema.type,
             value: value,
-            options: fieldSchema.options?.map(opt => ({ value: opt.value, label: opt.label })),
+            options: normalizeOptions(fieldSchema.options),
           };
           
           // Convert value to string for tooltip
@@ -484,7 +494,7 @@ function EditRowModal({
                 label: field.label,
                 type: field.type,
                 value: editedRow[field.name],
-                options: field.options,
+                options: normalizeOptions(field.options),
               }}
               onChange={(value) => {
                 setEditedRow(prev => ({ ...prev, [field.name]: value }));

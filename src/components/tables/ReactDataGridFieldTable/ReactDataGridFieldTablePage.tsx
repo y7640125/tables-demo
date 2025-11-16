@@ -10,6 +10,16 @@ import styles from './ReactDataGridFieldTablePage.module.css';
 
 type RowData = Record<string, any> & { id: string };
 
+// Normalize options: handle both string arrays and object arrays
+const normalizeOptions = (opts?: any[]): { value: string; label: string }[] | undefined => {
+  if (!opts || opts.length === 0) return undefined;
+  // Check if first option is a string or object
+  if (typeof opts[0] === 'string') {
+    return opts.map(opt => ({ value: opt, label: opt }));
+  }
+  return opts.map(opt => ({ value: opt.value, label: opt.label }));
+};
+
 // Filter Header Component using ColumnFilterPopover
 function RDGFilterHeader({ 
   column, 
@@ -185,7 +195,7 @@ export default function ReactDataGridFieldTablePage() {
             label: schema.label,
             type: schema.type,
             value: value,
-            options: schema.options?.map(opt => ({ value: opt.value, label: opt.label })),
+            options: normalizeOptions(schema.options),
           };
           
           return (
@@ -329,7 +339,7 @@ function EditRowModal({
                 label: field.label,
                 type: field.type,
                 value: editedRow[field.name],
-                options: field.options,
+                options: normalizeOptions(field.options),
               }}
               onChange={(value) => {
                 setEditedRow(prev => ({ ...prev, [field.name]: value }));
