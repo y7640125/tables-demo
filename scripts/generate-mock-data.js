@@ -1,5 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const schema = [
   { name: "id", label: "מזהה", type: "text" },
@@ -31,7 +35,8 @@ const schema = [
   { name: "summary", label: "סיכום", type: "textarea" },
   { name: "status", label: "סטטוס", type: "enum", options: ["פתוח", "סגור", "בהמתנה", "בוטל"] },
   { name: "priority", label: "עדיפות", type: "enum", options: ["נמוכה", "בינונית", "גבוהה", "דחופה"] },
-  { name: "category", label: "קטגוריה", type: "enum", options: ["כללי", "מכירות", "תמיכה", "פיתוח", "שיווק"] }
+  { name: "category", label: "קטגוריה", type: "enum", options: ["כללי", "מכירות", "תמיכה", "פיתוח", "שיווק"] },
+  { name: "emptyColumn", label: "עמודה ריקה לבדיקה", type: "text" }
 ];
 
 const firstNames = ['דוד', 'שרה', 'יוסי', 'מיכל', 'אמיר', 'רחל', 'אלון', 'נועה', 'תומר', 'יעל', 'רונן', 'מיכל', 'עמית', 'ליאור', 'טל', 'אור', 'יובל', 'שירה', 'איתי', 'דנה'];
@@ -102,7 +107,8 @@ for (let i = 1; i <= 300; i++) {
     summary: randomItem(summaries) + ' עם תוצאות מעולות',
     status: randomItem(statuses),
     priority: randomItem(priorities),
-    category: randomItem(categories)
+    category: randomItem(categories),
+    emptyColumn: null
   });
 }
 
