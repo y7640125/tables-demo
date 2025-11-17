@@ -316,9 +316,12 @@ export default function AgGridFieldTablePage() {
       pinned: 'left', // In RTL, this appears on the left (end of row)
       sortable: false,
       resizable: false,
+      filter: false,
+      suppressHeaderMenuButton: true,
       width: 100,
       minWidth: 100,
       maxWidth: 100,
+      headerComponent: () => <div style={{ width: '100%', height: '100%' }}></div>,
       cellRenderer: (params: ICellRendererParams) => {
         const rowData = params.data as RowData;
         const isDisabled = rowData.isDisabled === true;
@@ -364,13 +367,19 @@ export default function AgGridFieldTablePage() {
           </span>
         );
       },
+      headerStyle: {
+        borderRight: 'none',
+      },
       cellStyle: {
         padding: '0',
         margin: '0',
         overflow: 'visible',
         verticalAlign: 'middle',
+        borderRight: 'none',
+        borderBottom: '1px solid rgba(94, 99, 108, 0.5)',
       },
       cellClass: 'actions-column-cell',
+      headerClass: 'actions-column-header',
     };
 
     return [...dataColumns, actionsColumn];

@@ -120,3 +120,28 @@
 .disabledRow {
   opacity: 0.5;
 }
+
+/* Remove right border from actions column */
+:global(.ag-theme-quartz) :global(.ag-pinned-left-cols-container) :global(.ag-header-cell[col-id="_actions"]),
+:global(.ag-theme-quartz) :global(.ag-pinned-left-cols-container) :global(.ag-cell[col-id="_actions"]) {
+  border-right: none !important;
+}
+
+:global(.ag-theme-quartz) :global(.ag-header-cell.actions-column-header),
+:global(.ag-theme-quartz) :global(.ag-cell.actions-column-cell) {
+  border-right: none !important;
+}
+
+/* Add bottom border to actions column cells for row separators */
+:global(.ag-theme-quartz) :global(.ag-pinned-left-cols-container) :global(.ag-cell[col-id="_actions"]) {
+  border-bottom: 1px solid rgba(94, 99, 108, 0.5) !important;
+}
+
+:global(.ag-theme-quartz) :global(.ag-cell.actions-column-cell) {
+  border-bottom: 1px solid rgba(94, 99, 108, 0.5) !important;
+}
+
+/* Ensure row borders are visible for actions column */
+:global(.ag-theme-quartz) :global(.ag-row) :global(.ag-cell[col-id="_actions"]) {
+  border-bottom: 1px solid rgba(94, 99, 108, 0.5) !important;
+}
