@@ -306,6 +306,7 @@ export default function ReactDataGridFieldTablePage() {
           selectedRows={selectedRows}
           onSelectedRowsChange={setSelectedRows}
           rowKeyGetter={(row) => row.id}
+          rowClassName={(row) => row.isDisabled === true ? styles.disabledRow : ''}
           defaultColumnOptions={{
             resizable: true,
             sortable: true,
@@ -319,7 +320,7 @@ export default function ReactDataGridFieldTablePage() {
         />
       </div>
 
-      {editingRow && (
+      {editingRow && !editingRow.isDisabled && (
         <EditRowModal
           row={editingRow}
           schema={tableData.schema}

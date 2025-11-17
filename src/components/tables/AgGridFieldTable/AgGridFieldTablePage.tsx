@@ -321,6 +321,12 @@ export default function AgGridFieldTablePage() {
       maxWidth: 100,
       cellRenderer: (params: ICellRendererParams) => {
         const rowData = params.data as RowData;
+        const isDisabled = rowData.isDisabled === true;
+        
+        if (isDisabled) {
+          return null;
+        }
+        
         return (
           <span 
             className={`${styles.actionsCell} ag-grid-actions-cell`}
@@ -498,7 +504,8 @@ export default function AgGridFieldTablePage() {
             }
           }}
           getRowClass={(params) => {
-            return `${styles.tableRow} ag-grid-row-with-actions`;
+            const isDisabled = params.data?.isDisabled === true;
+            return `${styles.tableRow} ag-grid-row-with-actions ${isDisabled ? styles.disabledRow : ''}`;
           }}
           onColumnResized={(params) => {
             if (params.finished && params.column) {
@@ -548,7 +555,7 @@ export default function AgGridFieldTablePage() {
         />
       )}
 
-      {editingRow && (
+      {editingRow && !editingRow.isDisabled && (
         <EditRowModal
           row={editingRow}
           schema={tableData.schema}

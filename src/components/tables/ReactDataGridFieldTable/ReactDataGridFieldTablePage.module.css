@@ -239,3 +239,32 @@
   margin-top: 1rem;
 }
 
+.disabledRow {
+  opacity: 0.5;
+}
+
+.disabledRow :global([role="gridcell"]) {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+
+.disabledRow :global([role="gridcell"]) * {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+
+/* Alternative selector for ReactDataGrid rows */
+.gridContainer :global(.rdg-row.disabledRow) {
+  opacity: 0.5;
+}
+
+.gridContainer :global(.rdg-row.disabledRow .rdg-cell) {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+
+.gridContainer :global(.rdg-row.disabledRow .rdg-cell *) {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+

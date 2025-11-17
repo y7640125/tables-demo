@@ -173,6 +173,11 @@
       "name": "emptyColumn",
       "label": "עמודה ריקה לבדיקה",
       "type": "text"
+    },
+    {
+      "name": "isDisabled",
+      "label": "מבוטל",
+      "type": "boolean"
     }
   ],
   "rows": [
@@ -207,7 +212,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "002",
@@ -240,7 +246,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "003",
@@ -273,7 +280,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": true
     },
     {
       "id": "004",
@@ -306,7 +314,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "005",
@@ -339,7 +348,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "006",
@@ -372,7 +382,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "007",
@@ -405,7 +416,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "008",
@@ -438,7 +450,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "009",
@@ -471,7 +484,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "010",
@@ -504,7 +518,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": true
     },
     {
       "id": "011",
@@ -537,7 +552,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "012",
@@ -570,7 +586,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "013",
@@ -603,7 +620,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "014",
@@ -636,7 +654,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "015",
@@ -669,7 +688,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "016",
@@ -702,7 +722,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "017",
@@ -735,7 +756,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "018",
@@ -768,7 +790,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "019",
@@ -801,7 +824,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "020",
@@ -834,7 +858,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": true
     },
     {
       "id": "021",
@@ -867,7 +892,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "022",
@@ -900,7 +926,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "023",
@@ -933,7 +960,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "024",
@@ -966,7 +994,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "025",
@@ -999,7 +1028,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "026",
@@ -1032,7 +1062,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "027",
@@ -1065,7 +1096,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "028",
@@ -1098,7 +1130,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "029",
@@ -1131,7 +1164,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "030",
@@ -1164,7 +1198,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "031",
@@ -1197,7 +1232,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "032",
@@ -1230,7 +1266,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "033",
@@ -1263,7 +1300,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "034",
@@ -1296,7 +1334,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "035",
@@ -1329,7 +1368,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": true
     },
     {
       "id": "036",
@@ -1362,7 +1402,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "037",
@@ -1395,7 +1436,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "038",
@@ -1428,7 +1470,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "039",
@@ -1461,7 +1504,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "040",
@@ -1494,7 +1538,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "041",
@@ -1527,7 +1572,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "042",
@@ -1560,7 +1606,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "043",
@@ -1593,7 +1640,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "044",
@@ -1626,7 +1674,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "045",
@@ -1659,7 +1708,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "046",
@@ -1692,7 +1742,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "047",
@@ -1725,7 +1776,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "048",
@@ -1758,7 +1810,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "049",
@@ -1791,7 +1844,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "050",
@@ -1824,7 +1878,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "051",
@@ -1857,7 +1912,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "052",
@@ -1890,7 +1946,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "053",
@@ -1923,7 +1980,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "054",
@@ -1956,7 +2014,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "055",
@@ -1989,7 +2048,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "056",
@@ -2022,7 +2082,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "057",
@@ -2055,7 +2116,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "058",
@@ -2088,7 +2150,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "059",
@@ -2121,7 +2184,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "060",
@@ -2154,7 +2218,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "061",
@@ -2187,7 +2252,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "062",
@@ -2220,7 +2286,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "063",
@@ -2253,7 +2320,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "064",
@@ -2286,7 +2354,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "065",
@@ -2319,7 +2388,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "066",
@@ -2352,7 +2422,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "067",
@@ -2385,7 +2456,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "068",
@@ -2418,7 +2490,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "069",
@@ -2451,7 +2524,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "070",
@@ -2484,7 +2558,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "071",
@@ -2517,7 +2592,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "072",
@@ -2550,7 +2626,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "073",
@@ -2583,7 +2660,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "074",
@@ -2616,7 +2694,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "075",
@@ -2649,7 +2728,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "076",
@@ -2682,7 +2762,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "077",
@@ -2715,7 +2796,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "078",
@@ -2748,7 +2830,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "079",
@@ -2781,7 +2864,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "080",
@@ -2814,7 +2898,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "081",
@@ -2847,7 +2932,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "082",
@@ -2880,7 +2966,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "083",
@@ -2913,7 +3000,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "084",
@@ -2946,7 +3034,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "085",
@@ -2979,7 +3068,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "086",
@@ -3012,7 +3102,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "087",
@@ -3045,7 +3136,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "088",
@@ -3078,7 +3170,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "089",
@@ -3111,7 +3204,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "090",
@@ -3144,7 +3238,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "091",
@@ -3177,7 +3272,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "092",
@@ -3210,7 +3306,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "093",
@@ -3243,7 +3340,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "094",
@@ -3276,7 +3374,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "095",
@@ -3309,7 +3408,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "096",
@@ -3342,7 +3442,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "097",
@@ -3375,7 +3476,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "098",
@@ -3408,7 +3510,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "099",
@@ -3441,7 +3544,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "100",
@@ -3474,7 +3578,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "101",
@@ -3507,7 +3612,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "102",
@@ -3540,7 +3646,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "103",
@@ -3573,7 +3680,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "104",
@@ -3606,7 +3714,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "105",
@@ -3639,7 +3748,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "106",
@@ -3672,7 +3782,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "107",
@@ -3705,7 +3816,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "108",
@@ -3738,7 +3850,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "109",
@@ -3771,7 +3884,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "110",
@@ -3804,7 +3918,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "111",
@@ -3837,7 +3952,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "112",
@@ -3870,7 +3986,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "113",
@@ -3903,7 +4020,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "114",
@@ -3936,7 +4054,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "115",
@@ -3969,7 +4088,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "116",
@@ -4002,7 +4122,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "117",
@@ -4035,7 +4156,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "118",
@@ -4068,7 +4190,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "119",
@@ -4101,7 +4224,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "120",
@@ -4134,7 +4258,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "121",
@@ -4167,7 +4292,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "122",
@@ -4200,7 +4326,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "123",
@@ -4233,7 +4360,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "124",
@@ -4266,7 +4394,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "125",
@@ -4299,7 +4428,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "126",
@@ -4332,7 +4462,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "127",
@@ -4365,7 +4496,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "128",
@@ -4398,7 +4530,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "129",
@@ -4431,7 +4564,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "130",
@@ -4464,7 +4598,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "131",
@@ -4497,7 +4632,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "132",
@@ -4530,7 +4666,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "133",
@@ -4563,7 +4700,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "134",
@@ -4596,7 +4734,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "135",
@@ -4629,7 +4768,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "136",
@@ -4662,7 +4802,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "137",
@@ -4695,7 +4836,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "138",
@@ -4728,7 +4870,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "139",
@@ -4761,7 +4904,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "140",
@@ -4794,7 +4938,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "141",
@@ -4827,7 +4972,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "142",
@@ -4860,7 +5006,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "143",
@@ -4893,7 +5040,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "144",
@@ -4926,7 +5074,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "145",
@@ -4959,7 +5108,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "146",
@@ -4992,7 +5142,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "147",
@@ -5025,7 +5176,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "148",
@@ -5058,7 +5210,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "149",
@@ -5091,7 +5244,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "150",
@@ -5124,7 +5278,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "151",
@@ -5157,7 +5312,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "152",
@@ -5190,7 +5346,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "153",
@@ -5223,7 +5380,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "154",
@@ -5256,7 +5414,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "155",
@@ -5289,7 +5448,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "156",
@@ -5322,7 +5482,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "157",
@@ -5355,7 +5516,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "158",
@@ -5388,7 +5550,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "159",
@@ -5421,7 +5584,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "160",
@@ -5454,7 +5618,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "161",
@@ -5487,7 +5652,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "162",
@@ -5520,7 +5686,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "163",
@@ -5553,7 +5720,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "164",
@@ -5586,7 +5754,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "165",
@@ -5619,7 +5788,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "166",
@@ -5652,7 +5822,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "167",
@@ -5685,7 +5856,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "168",
@@ -5718,7 +5890,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "169",
@@ -5751,7 +5924,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "170",
@@ -5784,7 +5958,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "171",
@@ -5817,7 +5992,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "172",
@@ -5850,7 +6026,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "173",
@@ -5883,7 +6060,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "174",
@@ -5916,7 +6094,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "175",
@@ -5949,7 +6128,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "176",
@@ -5982,7 +6162,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "177",
@@ -6015,7 +6196,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "178",
@@ -6048,7 +6230,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "179",
@@ -6081,7 +6264,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "180",
@@ -6114,7 +6298,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "181",
@@ -6147,7 +6332,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "182",
@@ -6180,7 +6366,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "183",
@@ -6213,7 +6400,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "184",
@@ -6246,7 +6434,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "185",
@@ -6279,7 +6468,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "186",
@@ -6312,7 +6502,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "187",
@@ -6345,7 +6536,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "188",
@@ -6378,7 +6570,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "189",
@@ -6411,7 +6604,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "190",
@@ -6444,7 +6638,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "191",
@@ -6477,7 +6672,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "192",
@@ -6510,7 +6706,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "193",
@@ -6543,7 +6740,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "194",
@@ -6576,7 +6774,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "195",
@@ -6609,7 +6808,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "196",
@@ -6642,7 +6842,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "197",
@@ -6675,7 +6876,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "198",
@@ -6708,7 +6910,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "199",
@@ -6741,7 +6944,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "200",
@@ -6774,7 +6978,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "201",
@@ -6807,7 +7012,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "202",
@@ -6840,7 +7046,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "203",
@@ -6873,7 +7080,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "204",
@@ -6906,7 +7114,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "205",
@@ -6939,7 +7148,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "206",
@@ -6972,7 +7182,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "207",
@@ -7005,7 +7216,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "208",
@@ -7038,7 +7250,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "209",
@@ -7071,7 +7284,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "210",
@@ -7104,7 +7318,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "211",
@@ -7137,7 +7352,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "212",
@@ -7170,7 +7386,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "213",
@@ -7203,7 +7420,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "214",
@@ -7236,7 +7454,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "215",
@@ -7269,7 +7488,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "216",
@@ -7302,7 +7522,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "217",
@@ -7335,7 +7556,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "218",
@@ -7368,7 +7590,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "219",
@@ -7401,7 +7624,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "220",
@@ -7434,7 +7658,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "221",
@@ -7467,7 +7692,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "222",
@@ -7500,7 +7726,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "223",
@@ -7533,7 +7760,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "224",
@@ -7566,7 +7794,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "225",
@@ -7599,7 +7828,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "226",
@@ -7632,7 +7862,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "227",
@@ -7665,7 +7896,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "228",
@@ -7698,7 +7930,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "229",
@@ -7731,7 +7964,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "230",
@@ -7764,7 +7998,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "231",
@@ -7797,7 +8032,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "232",
@@ -7830,7 +8066,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "233",
@@ -7863,7 +8100,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "234",
@@ -7896,7 +8134,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "235",
@@ -7929,7 +8168,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "236",
@@ -7962,7 +8202,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "237",
@@ -7995,7 +8236,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "238",
@@ -8028,7 +8270,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "239",
@@ -8061,7 +8304,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "240",
@@ -8094,7 +8338,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "241",
@@ -8127,7 +8372,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "242",
@@ -8160,7 +8406,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "243",
@@ -8193,7 +8440,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "244",
@@ -8226,7 +8474,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "245",
@@ -8259,7 +8508,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "246",
@@ -8292,7 +8542,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "247",
@@ -8325,7 +8576,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "248",
@@ -8358,7 +8610,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "249",
@@ -8391,7 +8644,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "250",
@@ -8424,7 +8678,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "251",
@@ -8457,7 +8712,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "252",
@@ -8490,7 +8746,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "253",
@@ -8523,7 +8780,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "254",
@@ -8556,7 +8814,8 @@
       "status": "פתוח",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "255",
@@ -8589,7 +8848,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "256",
@@ -8622,7 +8882,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "257",
@@ -8655,7 +8916,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "258",
@@ -8688,7 +8950,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "259",
@@ -8721,7 +8984,8 @@
       "status": "פתוח",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "260",
@@ -8754,7 +9018,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "261",
@@ -8787,7 +9052,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "262",
@@ -8820,7 +9086,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "263",
@@ -8853,7 +9120,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "264",
@@ -8886,7 +9154,8 @@
       "status": "בוטל",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "265",
@@ -8919,7 +9188,8 @@
       "status": "בוטל",
       "priority": "נמוכה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "266",
@@ -8952,7 +9222,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "267",
@@ -8985,7 +9256,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "268",
@@ -9018,7 +9290,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "269",
@@ -9051,7 +9324,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "270",
@@ -9084,7 +9358,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "271",
@@ -9117,7 +9392,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "272",
@@ -9150,7 +9426,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "273",
@@ -9183,7 +9460,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "274",
@@ -9216,7 +9494,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "275",
@@ -9249,7 +9528,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "276",
@@ -9282,7 +9562,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "277",
@@ -9315,7 +9596,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "278",
@@ -9348,7 +9630,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "279",
@@ -9381,7 +9664,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "280",
@@ -9414,7 +9698,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "281",
@@ -9447,7 +9732,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "282",
@@ -9480,7 +9766,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "283",
@@ -9513,7 +9800,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "284",
@@ -9546,7 +9834,8 @@
       "status": "סגור",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "285",
@@ -9579,7 +9868,8 @@
       "status": "בהמתנה",
       "priority": "נמוכה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "286",
@@ -9612,7 +9902,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "287",
@@ -9645,7 +9936,8 @@
       "status": "פתוח",
       "priority": "גבוהה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "288",
@@ -9678,7 +9970,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "289",
@@ -9711,7 +10004,8 @@
       "status": "בהמתנה",
       "priority": "גבוהה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "290",
@@ -9744,7 +10038,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "291",
@@ -9777,7 +10072,8 @@
       "status": "בוטל",
       "priority": "גבוהה",
       "category": "שיווק",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "292",
@@ -9810,7 +10106,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "293",
@@ -9843,7 +10140,8 @@
       "status": "פתוח",
       "priority": "בינונית",
       "category": "תמיכה",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "294",
@@ -9876,7 +10174,8 @@
       "status": "בהמתנה",
       "priority": "דחופה",
       "category": "מכירות",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "295",
@@ -9909,7 +10208,8 @@
       "status": "סגור",
       "priority": "דחופה",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "296",
@@ -9942,7 +10242,8 @@
       "status": "בוטל",
       "priority": "דחופה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "297",
@@ -9975,7 +10276,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "298",
@@ -10008,7 +10310,8 @@
       "status": "סגור",
       "priority": "בינונית",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "299",
@@ -10041,7 +10344,8 @@
       "status": "בהמתנה",
       "priority": "בינונית",
       "category": "פיתוח",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     },
     {
       "id": "300",
@@ -10074,7 +10378,8 @@
       "status": "סגור",
       "priority": "נמוכה",
       "category": "כללי",
-      "emptyColumn": null
+      "emptyColumn": null,
+      "isDisabled": false
     }
   ]
 }

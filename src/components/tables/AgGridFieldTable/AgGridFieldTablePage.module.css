@@ -116,3 +116,7 @@
   min-width: 36px !important;
   visibility: visible !important;
 }
+
+.disabledRow {
+  opacity: 0.5;
+}

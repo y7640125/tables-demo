@@ -574,11 +574,13 @@ export default function TanStackFieldTablePage() {
                       const row = table.getRowModel().rows[virtualRow.index];
                       if (!row) return null;
                       
+                      const isDisabled = row.original.isDisabled === true;
+                      
                       return (
                         <tr
                           key={row.id}
                           data-index={virtualRow.index}
-                          className={styles.tr}
+                          className={`${styles.tr} ${isDisabled ? styles.disabledRow : ''}`}
                           onMouseEnter={() => setHoveredRow(virtualRow.index)}
                           onMouseLeave={() => setHoveredRow(null)}
                         >
@@ -606,7 +608,7 @@ export default function TanStackFieldTablePage() {
                               </td>
                             );
                           })}
-                          {hoveredRow === virtualRow.index && (
+                          {hoveredRow === virtualRow.index && !isDisabled && (
                             <td className={styles.actionsCell}>
                               <div className={styles.actionsContainer}>
                                 <IconButton 
@@ -687,7 +689,7 @@ export default function TanStackFieldTablePage() {
         />
       )}
 
-      {editingRow && (
+      {editingRow && !editingRow.isDisabled && (
         <EditRowModal
           row={editingRow}
           schema={tableData.schema}

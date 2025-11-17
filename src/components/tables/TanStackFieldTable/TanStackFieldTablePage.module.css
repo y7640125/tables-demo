@@ -258,3 +258,17 @@
   margin-top: 1rem;
 }
 
+.disabledRow {
+  opacity: 0.5;
+}
+/* 
+.disabledCell {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+
+.disabledCell * {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+ */
