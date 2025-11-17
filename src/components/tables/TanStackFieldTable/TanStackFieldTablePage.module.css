@@ -106,9 +106,14 @@
 .tr {
   border-bottom: 1px solid #5e636c80;
   background-color: #202233;
+  position: relative;
 }
 
 .tr:hover {
+  background-color: #2e3144;
+}
+
+.tr:hover .actionsCell {
   background-color: #2e3144;
 }
 
@@ -183,11 +188,52 @@
 .actionsCell {
   position: sticky;
   right: 0;
-  background: var(--table-header);
-  padding: 0.5rem;
-  display: flex;
-  gap: 0.25rem;
-  z-index: 5;
+  background: #2e3144 !important;
+  padding: 0;
+  display: table-cell !important;
+  min-width: 150px !important;
+  width: 150px !important;
+  height: 35px !important;
+  z-index: 10 !important;
+  border-right: 1px solid #5e636c80;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
+  vertical-align: middle;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+.actionsContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 0.5rem !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0 0.75rem 0 0.5rem !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
+.actionsContainer > button {
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-width: 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.actionsContainer > button[title="מחיקה"],
+.actionsContainer > button:last-child {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-shrink: 0 !important;
 }
 
 .modalContent {

@@ -253,7 +253,7 @@ export default function AgGridFieldTablePage() {
 
   // Build column definitions - use field names that match data keys, no mutations
   const columnDefs = useMemo<ColDef[]>(() => {
-    return visibleColumns.map((schema: FieldSchema) => {
+    const dataColumns = visibleColumns.map((schema: FieldSchema) => {
       const fieldName = schema.name; // This must match the key in row objects
       
       return {
@@ -308,6 +308,66 @@ export default function AgGridFieldTablePage() {
         enableSorting: true,
       };
     });
+
+    // Add actions column pinned to the left (appears on left in RTL - end of row)
+    const actionsColumn: ColDef = {
+      headerName: '',
+      field: '_actions',
+      pinned: 'left', // In RTL, this appears on the left (end of row)
+      sortable: false,
+      resizable: false,
+      width: 100,
+      minWidth: 100,
+      maxWidth: 100,
+      cellRenderer: (params: ICellRendererParams) => {
+        const rowData = params.data as RowData;
+        return (
+          <span 
+            className={`${styles.actionsCell} ag-grid-actions-cell`}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <IconButton
+              onClick={(e) => {
+                e.stopPropagation();
+                setEditingRow(rowData);
+              }}
+              title="עריכה"
+              className={styles.actionButton}
+            >
+              ✏️
+            </IconButton>
+            <IconButton
+              onClick={(e) => {
+                e.stopPropagation();
+                if (window.confirm('האם אתה בטוח שברצונך למחוק שורה זו?')) {
+                  setRows(prev => prev.filter(row => row.id !== rowData.id));
+                }
+              }}
+              title="מחיקה"
+              className={styles.actionButton}
+            >
+              🗑️
+            </IconButton>
+          </span>
+        );
+      },
+      cellStyle: {
+        padding: '0',
+        margin: '0',
+        overflow: 'visible',
+        verticalAlign: 'middle',
+      },
+      cellClass: 'actions-column-cell',
+    };
+
+    return [...dataColumns, actionsColumn];
   }, [visibleColumns]);
 
   const defaultColDef = useMemo<ColDef>(() => ({
@@ -326,8 +386,9 @@ export default function AgGridFieldTablePage() {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      display: 'block',
       maxWidth: '100%',
+      padding: '0 8px',
+      margin: '0',
     },
   }), []);
 
@@ -344,6 +405,11 @@ export default function AgGridFieldTablePage() {
         params.api.setColumnWidth(col, 80);
       }
     });
+  }, []);
+
+  const onViewportChanged = useCallback(() => {
+    // Don't refresh cells as it might cause spacing issues
+    // The grid should handle rendering automatically
   }, []);
 
   const handleSaveEdit = useCallback((updatedRow: RowData) => {
@@ -410,14 +476,19 @@ export default function AgGridFieldTablePage() {
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           onGridReady={onGridReady}
-          rowBuffer={10}
-          animateRows={true}
-          pagination={false}
+          onViewportChanged={onViewportChanged}
+          rowBuffer={30}
+          animateRows={false}
+          pagination={false}        
           domLayout="normal"
           suppressMultiSort={true}
           rowHeight={38}
           headerHeight={38}
+          suppressRowHoverHighlight={false}
+          suppressCellFocus={true}
           enableRtl={true}
+          suppressRowVirtualisation={false}
+          suppressColumnVirtualisation={false}
           localeText={{
             noRowsToShow: 'אין שורות להצגה',
           }}
@@ -425,6 +496,9 @@ export default function AgGridFieldTablePage() {
             if (params.column) {
               handleAutoSize(params.column.getColId());
             }
+          }}
+          getRowClass={(params) => {
+            return `${styles.tableRow} ag-grid-row-with-actions`;
           }}
           onColumnResized={(params) => {
             if (params.finished && params.column) {

@@ -87,3 +87,32 @@
   margin-top: 1rem;
 }
 
+
+.actionsCell {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100% !important;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.2s;
+  overflow: visible !important;
+  flex-wrap: nowrap;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.actionButton {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0;
+  font-size: 16px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0 !important;
+  min-width: 36px !important;
+  visibility: visible !important;
+}

@@ -63,11 +63,18 @@
   border-color: #5e636c80;
 }
 
-.ag-theme-quartz.custom-table .ag-cell,
+.ag-theme-quartz.custom-table .ag-cell {
+  background-color: #202233;
+  color: #d6ddec;
+  border-color: #5e636c80;
+}
+
 .ag-theme-quartz.custom-table .ag-row {
   background-color: #202233;
   color: #d6ddec;
   border-color: #5e636c80;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Force AG Grid RTL direction and alignment */
@@ -179,14 +186,151 @@
   border-right: 1px solid #5e636c80 !important;
   border-left: none !important;
   border-top: none !important;
-  border-bottom: 1px solid #5e636c80 !important;
+  border-bottom: none !important;
   padding: 0 8px !important;
   box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+/* Remove spacing between rows and add border-bottom */
+.ag-theme-quartz.custom-table .ag-row {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  height: 38px !important;
+  line-height: 1 !important;
+  vertical-align: top !important;
+  border-bottom: 1px solid #5e636c80 !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove any gap or spacing from row containers */
+.ag-theme-quartz.custom-table .ag-body-viewport .ag-center-cols-container {
+  gap: 0 !important;
+  row-gap: 0 !important;
+}
+
+.ag-theme-quartz.custom-table .ag-row-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  line-height: 1 !important;
+  display: block !important;
+}
+
+/* Remove spacing between row wrappers */
+.ag-theme-quartz.custom-table .ag-center-cols-container .ag-row-wrapper + .ag-row-wrapper {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Remove any spacing from all row-related elements */
+.ag-theme-quartz.custom-table .ag-center-cols-container .ag-row,
+.ag-theme-quartz.custom-table .ag-pinned-left-cols-container .ag-row-wrapper,
+.ag-theme-quartz.custom-table .ag-pinned-right-cols-container .ag-row-wrapper {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+
+.ag-theme-quartz.custom-table .ag-center-cols-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ag-theme-quartz.custom-table .ag-center-cols-viewport {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove any spacing from row containers */
+.ag-theme-quartz.custom-table .ag-body-viewport .ag-row {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Fix spacing for pinned columns */
+.ag-theme-quartz.custom-table .ag-pinned-left-cols-container,
+.ag-theme-quartz.custom-table .ag-pinned-right-cols-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+.ag-theme-quartz.custom-table .ag-pinned-left-cols-container .ag-row-wrapper,
+.ag-theme-quartz.custom-table .ag-pinned-right-cols-container .ag-row-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  line-height: 0 !important;
+  display: block !important;
+}
+
+.ag-theme-quartz.custom-table .ag-pinned-left-cols-container .ag-row,
+.ag-theme-quartz.custom-table .ag-pinned-right-cols-container .ag-row {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  line-height: 0 !important;
+}
+
+.ag-theme-quartz.custom-table .ag-pinned-left-cols-container .ag-cell,
+.ag-theme-quartz.custom-table .ag-pinned-right-cols-container .ag-cell {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  border-bottom: none !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+.ag-theme-quartz.custom-table .ag-pinned-left-cols-container .ag-cell > *,
+.ag-theme-quartz.custom-table .ag-pinned-right-cols-container .ag-cell > * {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+/* Ensure no extra spacing in body viewport */
+.ag-theme-quartz.custom-table .ag-body-viewport {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ag-theme-quartz.custom-table .ag-body-horizontal-scroll {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Remove border from the rightmost visual column (last child in DOM, first visually in RTL) */
 .ag-theme-quartz.custom-table .ag-row .ag-cell:last-child {
   border-right: none !important;
+}
+
+/* Actions cell - show on row hover */
+.ag-theme-quartz.custom-table .ag-cell.actions-column-cell {
+  overflow: visible !important;
+  min-width: 100px !important;
+}
+
+.ag-theme-quartz.custom-table .ag-cell.actions-column-cell > * {
+  overflow: visible !important;
+}
+
+.ag-theme-quartz.custom-table .ag-row:hover .ag-cell.actions-column-cell .ag-grid-actions-cell,
+.ag-theme-quartz.custom-table .ag-row.ag-row-hover .ag-cell.actions-column-cell .ag-grid-actions-cell {
+  opacity: 1 !important;
 }
 
 /* Ensure header cell content is visible and properly displayed */

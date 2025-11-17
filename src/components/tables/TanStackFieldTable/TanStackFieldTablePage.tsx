@@ -608,12 +608,31 @@ export default function TanStackFieldTablePage() {
                           })}
                           {hoveredRow === virtualRow.index && (
                             <td className={styles.actionsCell}>
-                              <IconButton onClick={() => setEditingRow(row.original)} title="עריכה">
-                                ✏️
-                              </IconButton>
-                              <IconButton onClick={() => handleDeleteRow(virtualRow.index)} title="מחיקה">
-                                🗑️
-                              </IconButton>
+                              <div className={styles.actionsContainer}>
+                                <IconButton 
+                                  key="edit"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setEditingRow(row.original);
+                                  }} 
+                                  title="עריכה"
+                                >
+                                  ✏️
+                                </IconButton>
+                                <IconButton 
+                                  key="delete"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    const rowIndex = rows.findIndex(r => r.id === row.original.id);
+                                    if (rowIndex !== -1) {
+                                      handleDeleteRow(rowIndex);
+                                    }
+                                  }} 
+                                  title="מחיקה"
+                                >
+                                  🗑️
+                                </IconButton>
+                              </div>
                             </td>
                           )}
                         </tr>
