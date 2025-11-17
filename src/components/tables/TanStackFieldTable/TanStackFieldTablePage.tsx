@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
+import { useMemo, useState, useCallback, useRef, useEffect, useLayoutEffect } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -108,6 +108,8 @@ export default function TanStackFieldTablePage() {
   const [selectionStart, setSelectionStart] = useState<{ rowIndex: number; columnId: string } | null>(null);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
+  const headerRefs = useRef<Map<string, HTMLTableCellElement>>(new Map());
+  const [columnSizing, setColumnSizing] = useState<Record<string, number>>({});
 
   // Compute filtered rows
   const filteredRows = useMemo(() => {
@@ -238,9 +240,8 @@ export default function TanStackFieldTablePage() {
         if (a > b) return 1;
         return 0;
       },
-      size: 200,
       minSize: 80,
-      maxSize: 200,
+      maxSize: Infinity,
     }));
   }, [visibleColumns, filteredRows, filters]);
 
@@ -249,12 +250,120 @@ export default function TanStackFieldTablePage() {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    state: { sorting, columnOrder },
+    state: { sorting, columnOrder, columnSizing },
     onSortingChange: setSorting,
     onColumnOrderChange: setColumnOrder,
+    onColumnSizingChange: setColumnSizing,
     columnResizeMode: 'onChange',
     columnResizeDirection: 'rtl',
   });
+
+  // Measure header widths and update column sizes
+  useLayoutEffect(() => {
+    const measureHeaders = () => {
+      if (!tableContainerRef.current) return;
+      
+      const tableElement = tableContainerRef.current.querySelector('table');
+      if (!tableElement) return;
+      
+      const newSizing: Record<string, number> = {};
+      
+      // Temporarily change table layout to auto to measure natural widths
+      const originalTableLayout = tableElement.style.tableLayout;
+      const originalThWidths = new Map<string, string>();
+      
+      // Store original widths and set to auto
+      headerRefs.current.forEach((headerElement, columnId) => {
+        originalThWidths.set(columnId, headerElement.style.width);
+        headerElement.style.width = 'auto';
+      });
+      
+      tableElement.style.tableLayout = 'auto';
+      
+      // Force a reflow
+      void tableElement.offsetWidth;
+      
+      headerRefs.current.forEach((headerElement, columnId) => {
+        if (headerElement) {
+          // Find the headerCell div inside the th
+          const headerCell = headerElement.querySelector('[class*="headerCell"]') as HTMLElement;
+          if (headerCell) {
+            // Measure the actual content width
+            const contentWidth = headerCell.offsetWidth;
+            
+            // Add padding (8px on each side = 16px total) and resizer width (4px)
+            const padding = 16;
+            const resizerWidth = 4;
+            const totalWidth = contentWidth + padding + resizerWidth;
+            
+            // Store the size for this column
+            newSizing[columnId] = Math.max(totalWidth, 80);
+          } else {
+            // Fallback: measure the th element itself
+            const width = headerElement.scrollWidth;
+            newSizing[columnId] = Math.max(width, 80);
+          }
+        }
+      });
+      
+      // Restore table layout and original widths
+      tableElement.style.tableLayout = originalTableLayout || 'fixed';
+      headerRefs.current.forEach((headerElement, columnId) => {
+        const originalWidth = originalThWidths.get(columnId);
+        if (originalWidth) {
+          headerElement.style.width = originalWidth;
+        }
+      });
+      
+      // Update all column sizes at once
+      if (Object.keys(newSizing).length > 0) {
+        setColumnSizing(prev => {
+          // Only update if there are actual changes
+          let shouldUpdate = false;
+          const updated: Record<string, number> = { ...prev };
+          
+          Object.entries(newSizing).forEach(([colId, newSize]) => {
+            const currentSize = prev[colId];
+            if (!currentSize || Math.abs(currentSize - newSize) > 1) {
+              updated[colId] = newSize;
+              shouldUpdate = true;
+            }
+          });
+          
+          return shouldUpdate ? updated : prev;
+        });
+      }
+    };
+
+    // Measure after DOM is ready
+    let rafId2: number | null = null;
+    const rafId1 = requestAnimationFrame(() => {
+      measureHeaders();
+      rafId2 = requestAnimationFrame(() => {
+        measureHeaders();
+      });
+    });
+    
+    const timeoutId = setTimeout(measureHeaders, 0);
+    const timeoutId2 = setTimeout(measureHeaders, 50);
+    const timeoutId3 = setTimeout(measureHeaders, 100);
+    const timeoutId4 = setTimeout(measureHeaders, 200);
+
+    // Also measure on window resize
+    window.addEventListener('resize', measureHeaders);
+
+    return () => {
+      cancelAnimationFrame(rafId1);
+      if (rafId2 !== null) {
+        cancelAnimationFrame(rafId2);
+      }
+      clearTimeout(timeoutId);
+      clearTimeout(timeoutId2);
+      clearTimeout(timeoutId3);
+      clearTimeout(timeoutId4);
+      window.removeEventListener('resize', measureHeaders);
+    };
+  }, [table, columns, sorting, visibleColumns]);
 
   // Virtualization - only virtualize rows
   const rowVirtualizer = useVirtualizer({
@@ -519,6 +628,13 @@ export default function TanStackFieldTablePage() {
                     return (
                       <th
                         key={header.id}
+                        ref={(el) => {
+                          if (el) {
+                            headerRefs.current.set(columnId, el);
+                          } else {
+                            headerRefs.current.delete(columnId);
+                          }
+                        }}
                         draggable
                         onDragStart={(e) => handleDragStart(e, columnId)}
                         onDragEnd={handleDragEnd}
@@ -526,7 +642,7 @@ export default function TanStackFieldTablePage() {
                         onDragLeave={handleDragLeave}
                         onDrop={(e) => handleDrop(e, columnId)}
                         style={{
-                          width: Math.min(Math.max(header.getSize(), 80), 200),
+                          width: header.getSize(),
                           position: 'sticky',
                           top: 0,
                           zIndex: isDragging ? 20 : 10,
@@ -593,7 +709,7 @@ export default function TanStackFieldTablePage() {
                                 key={cell.id} 
                                 className={styles.td} 
                                 style={{ 
-                                  width: Math.min(Math.max(cell.column.getSize(), 80), 200),
+                                  width: cell.column.getSize(),
                                   height: '35px',
                                   backgroundColor: isSelected ? '#ff69b4' : '#202233',
                                 }}
