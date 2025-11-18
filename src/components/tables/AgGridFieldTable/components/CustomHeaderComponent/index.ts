@@ -1,0 +1,2 @@
+export { CustomHeaderComponent } from './CustomHeaderComponent';
+
