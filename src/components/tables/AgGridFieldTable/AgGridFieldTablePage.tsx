@@ -24,7 +24,6 @@ import '../../../styles/design-system/TableEllipsis.module.css';
 export default function AgGridFieldTablePage() {
   const tableData = data as TableData;
   const rowData = tableData.rows;
-  console.log('AG Grid rows length =', rowData?.length);
   
   const [hiddenEmptyColumns, setHiddenEmptyColumns] = useState(false);
   const gridRef = useRef<AgGridReact>(null);
