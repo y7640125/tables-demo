@@ -1,0 +1,135 @@
+.popover {
+  position: absolute;
+  z-index: 1000;
+  background: var(--table-bg);
+  border: 1px solid var(--table-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popoverContent {
+  padding: 0.5rem;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  /* Scrollbar styling to match table background */
+  scrollbar-color: #2e3144 #202233;
+  scrollbar-width: thin;
+}
+
+/* Webkit scrollbar styling for popover content */
+.popoverContent::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.popoverContent::-webkit-scrollbar-track {
+  background-color: #202233; /* same as table background */
+  border-radius: 8px;
+}
+
+.popoverContent::-webkit-scrollbar-thumb {
+  background-color: #2e3144; /* slightly lighter for visibility */
+  border-radius: 8px;
+  border: 2px solid #202233; /* smooth separation */
+}
+
+.popoverContent::-webkit-scrollbar-thumb:hover {
+  background-color: #3a3d55;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--table-border);
+}
+
+.searchContainer {
+  margin-bottom: 0.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  border: 1px solid var(--table-border);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.searchInput:focus {
+  border-color: #4a90e2;
+}
+
+.searchInput::placeholder {
+  color: #888;
+  opacity: 0.7;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.clearButton,
+.selectAllButton {
+  background-color: var(--table-header);
+  color: var(--text-color);
+  border: 1px solid var(--table-border);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background 0.2s ease-in-out;
+}
+
+.clearButton:hover,
+.selectAllButton:hover {
+  background-color: #3a3f57;
+}
+
+.selectAllButton {
+  background-color: #2a4a7c;
+}
+
+.selectAllButton:hover {
+  background-color: #365a94;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.checkboxItem:hover {
+  background-color: var(--table-header);
+}
+
+.checkboxItem input {
+  cursor: pointer;
+}
+
+.noResults {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  font-size: 0.875rem;
+}
+

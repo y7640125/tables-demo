@@ -1,0 +1,274 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--table-bg);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+.toolbar {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--table-border);
+  background: var(--table-header);
+}
+
+.tableContainer {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background-color: #202233;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--table-header);
+}
+
+.th {
+  padding: 0 8px;
+  border-right: 1px solid #5e636c80;
+  border-bottom: 1px solid #5e636c80;
+  text-align: center;
+  position: relative;
+  background: #2e3144;
+  color: #d6ddec;
+  height: 35px;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.th.dragging {
+  opacity: 0.5;
+  cursor: grabbing !important;
+}
+
+.th.dragOver {
+  background-color: #3a3f57 !important;
+  border-left: 2px solid #0078d7;
+  border-right: 2px solid #0078d7;
+}
+
+.headerCell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.headerButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  text-align: right;
+  padding: 0.25rem;
+}
+
+.headerButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sortIcon {
+  font-size: 0.75rem;
+}
+
+.resizer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+  background: transparent;
+}
+
+.resizer:hover {
+  background: var(--table-border);
+}
+
+.tr {
+  border-bottom: 1px solid #5e636c80;
+  background-color: #202233;
+  position: relative;
+}
+
+.tr:hover {
+  background-color: #2e3144;
+}
+
+.tr:hover .actionsCell {
+  background-color: #2e3144;
+}
+
+.td {
+  padding: 0 8px;
+  border-right: 1px solid #5e636c80;
+  vertical-align: middle;
+  background-color: #202233;
+  color: #d6ddec;
+  height: 35px;
+  position: relative;
+}
+
+.tanStackCellWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 35px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 2rem;
+}
+
+.booleanCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+
+/* Ensure GenericField content inside cell can truncate */
+.cell > * {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  display: block;
+}
+
+/* For flex layouts in table cells */
+.tableCellContent {
+  flex: 1 1 0;
+  min-width: 0; /* required for text-overflow inside flex layouts */
+}
+
+.ellipsisCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.actionsCell {
+  position: sticky;
+  right: 0;
+  background: #2e3144 !important;
+  padding: 0;
+  display: table-cell !important;
+  min-width: 150px !important;
+  width: 150px !important;
+  height: 35px !important;
+  z-index: 10 !important;
+  border-right: 1px solid #5e636c80;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
+  vertical-align: middle;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+.actionsContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 0.5rem !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0 0.75rem 0 0.5rem !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
+.actionsContainer > button {
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-width: 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.actionsContainer > button[title="מחיקה"],
+.actionsContainer > button:last-child {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+.modalContent {
+  padding: 1.5rem;
+  min-width: 500px;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.modalActions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.disabledRow {
+  opacity: 0.5;
+}
+/* 
+.disabledCell {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+
+.disabledCell * {
+  color: #d6ddec !important;
+  opacity: 0.5;
+}
+ */

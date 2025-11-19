@@ -26,4 +26,13 @@ body {
   color: var(--text-muted);
 }
 
+/* React Data Grid styles to ensure proper table layout */
+/* The library uses CSS layers, so we only override what's necessary */
+.rdg-light,
+.rdg-dark {
+  height: 100% !important;
+  width: 100% !important;
+  direction: rtl;
+}
+
 

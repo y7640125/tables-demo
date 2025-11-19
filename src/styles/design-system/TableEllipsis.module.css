@@ -1,0 +1,60 @@
+/**
+ * TableEllipsis.module.css
+ *
+ * Unified ellipsis styling for AG Grid and TanStack Table.
+ * Applies text truncation with "..." when cell content is wider
+ * than the column width.
+ *
+ * Works with both LTR and RTL layouts.
+ */
+
+/* === AG Grid ellipsis support === */
+.ag-theme-quartz .ag-cell,
+.ag-theme-quartz .ag-cell .cell {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  display: block !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* === TanStack Table ellipsis support === */
+.tableCellContent,
+.cellWrapper,
+.cell,
+.ellipsisCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Ensure parent flex containers allow shrinking */
+.ag-cell,
+.tableCellContent,
+.cellWrapper {
+  min-width: 0 !important;
+}
+
+/* === RTL support === */
+[dir="rtl"] .ag-theme-quartz .ag-cell,
+[dir="rtl"] .ellipsisCell {
+  text-align: right;
+  direction: rtl;
+}
+
+/* === Optional helper class === */
+.ellipsisText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
