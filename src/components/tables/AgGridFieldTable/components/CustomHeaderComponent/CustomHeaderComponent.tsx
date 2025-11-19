@@ -52,7 +52,6 @@ export function CustomHeaderComponent(params: Props) {
       <div 
         className={styles.headerContent}
         onClick={handleHeaderClick}
-        style={{ cursor: 'pointer', flex: 1 }}
       >
         <span>{params.displayName}</span>
         {/* Show sort icon based on state */}

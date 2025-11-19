@@ -113,15 +113,13 @@ export default function Tooltip({ content, children }: TooltipProps) {
         <div
           ref={tooltipRef}
           id={tooltipId.current}
-          className={styles.tooltip}
+          className={`${styles.tooltip} ${styles.tooltipPositioned}`}
           role="tooltip"
           style={{
-            position: 'fixed',
-            top: isPositioned ? position.top : -9999,
-            left: isPositioned ? position.left : -9999,
-            zIndex: 10000,
-            visibility: isPositioned ? 'visible' : 'hidden',
-          }}
+            '--tooltip-top': `${isPositioned ? position.top : -9999}px`,
+            '--tooltip-left': `${isPositioned ? position.left : -9999}px`,
+            '--tooltip-visibility': isPositioned ? 'visible' : 'hidden',
+          } as React.CSSProperties}
         >
           {content}
         </div>,

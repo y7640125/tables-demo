@@ -597,7 +597,7 @@ export default function TanStackFieldTablePage() {
       <div className={styles.toolbar}>
         <Button
           onClick={() => setAddingRow(true)}
-          style={{ marginInlineEnd: '0.5rem' }}
+          className={styles.buttonMargin}
         >
           ➕ הוסף שורה
         </Button>
@@ -610,11 +610,8 @@ export default function TanStackFieldTablePage() {
       
       <div ref={tableContainerRef} className={`${styles.tableContainer} table-container`}>
         <div
-          style={{
-            height: `${rowVirtualizer.getTotalSize()}px`,
-            position: 'relative',
-            width: '100%',
-          }}
+          className={styles.virtualTableContainer}
+          style={{ '--virtual-height': `${rowVirtualizer.getTotalSize()}px` } as React.CSSProperties}
         >
           <table className={`${styles.table} custom-table tanstack-table`}>
             <thead className={styles.thead}>
@@ -642,15 +639,12 @@ export default function TanStackFieldTablePage() {
                         onDragLeave={handleDragLeave}
                         onDrop={(e) => handleDrop(e, columnId)}
                         style={{
-                          width: header.getSize(),
-                          position: 'sticky',
-                          top: 0,
-                          zIndex: isDragging ? 20 : 10,
-                          backgroundColor: isDragOver ? '#3a3f57' : '#2e3144',
-                          height: '35px',
-                          cursor: isDragging ? 'grabbing' : 'grab',
-                        }}
-                        className={`${styles.th} ${isDragging ? styles.dragging : ''} ${isDragOver ? styles.dragOver : ''}`}
+                          '--th-width': `${header.getSize()}px`,
+                          '--th-z-index': isDragging ? '20' : '10',
+                          '--th-bg': isDragOver ? '#3a3f57' : '#2e3144',
+                          '--th-cursor': isDragging ? 'grabbing' : 'grab',
+                        } as React.CSSProperties}
+                        className={`${styles.th} ${styles.thDynamic} ${isDragging ? styles.dragging : ''} ${isDragOver ? styles.dragOver : ''}`}
                       >
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         <div
@@ -685,7 +679,11 @@ export default function TanStackFieldTablePage() {
                 
                 return (
                   <>
-                    <tr style={{ height: virtualItems[0]?.start ?? 0 }} aria-hidden="true" />
+                    <tr 
+                      className={styles.virtualSpacerTop}
+                      style={{ '--spacer-top': `${virtualItems[0]?.start ?? 0}px` } as React.CSSProperties}
+                      aria-hidden="true" 
+                    />
                     {virtualItems.map(virtualRow => {
                       const row = table.getRowModel().rows[virtualRow.index];
                       if (!row) return null;
@@ -707,18 +705,17 @@ export default function TanStackFieldTablePage() {
                             return (
                               <td 
                                 key={cell.id} 
-                                className={styles.td} 
+                                className={`${styles.td} ${styles.tdDynamic} ${isSelected ? styles.selected : ''}`}
                                 style={{ 
-                                  width: cell.column.getSize(),
-                                  height: '35px',
-                                  backgroundColor: isSelected ? '#ff69b4' : '#202233',
-                                }}
+                                  '--td-width': `${cell.column.getSize()}px`,
+                                  '--td-bg': isSelected ? '#ff69b4' : '#202233',
+                                } as React.CSSProperties}
                                 onMouseDown={(e) => handleCellMouseDown(e, virtualRow.index, cell.column.id)}
                                 onMouseEnter={(e) => handleCellMouseEnter(e, virtualRow.index, cell.column.id)}
                                 onMouseUp={handleCellMouseUp}
                                 onContextMenu={(e) => handleCellContextMenu(e, virtualRow.index, cell.column.id)}
                               >
-                                <div className={styles.tanStackCellWrapper} style={{ backgroundColor: isSelected ? '#ff69b4' : 'transparent' }}>
+                                <div className={`${styles.tanStackCellWrapper} ${isSelected ? styles.cellWrapperSelected : styles.cellWrapper}`}>
                                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </div>
                               </td>
@@ -757,9 +754,10 @@ export default function TanStackFieldTablePage() {
                       );
                     })}
                     <tr
-                      style={{
-                        height: rowVirtualizer.getTotalSize() - (virtualItems[virtualItems.length - 1]?.end ?? 0),
-                      }}
+                      className={styles.virtualSpacerBottom}
+                      style={{ 
+                        '--spacer-bottom': `${rowVirtualizer.getTotalSize() - (virtualItems[virtualItems.length - 1]?.end ?? 0)}px` 
+                      } as React.CSSProperties}
                       aria-hidden="true"
                     />
                   </>
@@ -824,18 +822,11 @@ export default function TanStackFieldTablePage() {
 
       {contextMenu && (
         <div
+          className={styles.contextMenu}
           style={{
-            position: 'fixed',
-            left: contextMenu.x,
-            top: contextMenu.y,
-            backgroundColor: '#2e3144',
-            border: '1px solid #5e636c80',
-            borderRadius: '4px',
-            padding: '4px',
-            zIndex: 10000,
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
-            direction: 'rtl',
-          }}
+            '--menu-left': `${contextMenu.x}px`,
+            '--menu-top': `${contextMenu.y}px`,
+          } as React.CSSProperties}
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -843,19 +834,7 @@ export default function TanStackFieldTablePage() {
               handleCopy();
               setContextMenu(null);
             }}
-            style={{
-              display: 'block',
-              width: '100%',
-              padding: '8px 12px',
-              background: 'transparent',
-              border: 'none',
-              color: '#d6ddec',
-              cursor: 'pointer',
-              textAlign: 'right',
-              fontSize: '14px',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3a3f57'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+            className={styles.contextMenuButton}
           >
             העתק
           </button>

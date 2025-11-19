@@ -55,22 +55,7 @@ function RDGFilterHeader({
           setFilterAnchor(e.currentTarget);
           setFilterOpen(true);
         }} 
-        style={{ 
-          cursor: 'pointer',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '4px',
-          borderRadius: 4,
-          transition: 'background 0.2s',
-          backgroundColor: hasActiveFilter ? '#3a3d55' : 'transparent',
-        }}
-        onMouseEnter={(e) => {
-          if (!hasActiveFilter) e.currentTarget.style.backgroundColor = '#202233';
-        }}
-        onMouseLeave={(e) => {
-          if (!hasActiveFilter) e.currentTarget.style.backgroundColor = 'transparent';
-        }}
+        className={`${styles.filterButton} ${hasActiveFilter ? styles.filterButtonActive : styles.filterButtonInactive}`}
         title="סינון"
       >
         🔽
@@ -281,7 +266,7 @@ export default function ReactDataGridFieldTablePage() {
       <div className={styles.toolbar}>
         <Button
           onClick={() => setAddingRow(true)}
-          style={{ marginInlineEnd: '0.5rem' }}
+          className={styles.buttonMargin}
         >
           ➕ הוסף שורה
         </Button>
@@ -294,8 +279,7 @@ export default function ReactDataGridFieldTablePage() {
       
       <div 
         ref={gridRef} 
-        className={styles.gridContainer}
-        style={{ height: '80vh', width: '100%', direction: 'rtl' }}
+        className={`${styles.gridContainer} ${styles.gridContainerWrapper}`}
       >
         <DataGrid
           columns={columns}
@@ -315,8 +299,7 @@ export default function ReactDataGridFieldTablePage() {
             maxWidth: 200,
           }}
           rowHeight={35}
-          className="rdg-light custom-table"
-          style={{ height: '100%', width: '100%' }}
+          className={`rdg-light custom-table ${styles.dataGridFullSize}`}
         />
       </div>
 

@@ -97,7 +97,7 @@ export const useAgGridColumns = (
       width: 100,
       minWidth: 100,
       maxWidth: 100,
-      headerComponent: () => <div style={{ width: '100%', height: '100%' }}></div>,
+      headerComponent: () => <div></div>,
       cellRenderer: (params: ICellRendererParams) => (
         <ActionsCellRenderer
           params={params}

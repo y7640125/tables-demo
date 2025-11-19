@@ -17,7 +17,7 @@ export default function Toolbar({ onSearch, onToggleEmpty, onExportCsv, ColumnVi
 
   return (
     <div className={styles.toolbar}>
-      <label htmlFor={inputId} style={{ display: 'none' }}>חיפוש</label>
+      <label htmlFor={inputId} className={styles.hiddenLabel}>חיפוש</label>
       <input
         id={inputId}
         className={styles.input}

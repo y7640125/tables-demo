@@ -153,3 +153,22 @@
 :global(.ag-theme-quartz) :global(.ag-row) :global(.ag-cell[col-id="_actions"]) {
   border-bottom: 1px solid rgba(94, 99, 108, 0.5) !important;
 }
+
+.buttonMargin {
+  margin-inline-end: 0.5rem;
+}
+
+.tableWrapper {
+  direction: rtl;
+  text-align: right;
+  height: 80vh;
+  width: 100%;
+}
+
+.modalTableWrapper {
+  direction: rtl;
+  text-align: right;
+  height: 80vh;
+  width: 90vw;
+  max-width: 1200px;
+}

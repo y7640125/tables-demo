@@ -23,14 +23,6 @@ export function ActionsCellRenderer({ params, onEditClick, onDeleteClick }: Prop
   return (
     <span 
       className={`${styles.actionsCell} ag-grid-actions-cell`}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0.5rem',
-        margin: 0,
-        padding: 0,
-      }}
     >
       <IconButton
         onClick={(e) => {
