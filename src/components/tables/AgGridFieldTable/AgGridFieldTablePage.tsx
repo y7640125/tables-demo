@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useMemo } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 import type { GridApi } from 'ag-grid-community';
@@ -176,13 +176,13 @@ export default function AgGridFieldTablePage() {
       <div className={styles.toolbar}>
         <Button
           onClick={() => setIsModalOpen(true)}
-          style={{ marginInlineEnd: '0.5rem' }}
+          className={styles.buttonMargin}
         >
           🔍 פתח במודל
         </Button>
         <Button
           onClick={startAdding}
-          style={{ marginInlineEnd: '0.5rem' }}
+          className={styles.buttonMargin}
         >
           ➕ הוסף שורה
         </Button>
@@ -195,13 +195,7 @@ export default function AgGridFieldTablePage() {
       
       <div 
         dir="rtl"
-        className="ag-theme-quartz custom-table"
-        style={{ 
-          direction: 'rtl', 
-          textAlign: 'right', 
-          height: '80vh', 
-          width: '100%',
-        }}
+        className={`ag-theme-quartz custom-table ${styles.tableWrapper}`}
       >
         {tableComponent}
       </div>
@@ -240,14 +234,7 @@ export default function AgGridFieldTablePage() {
         <div className={styles.modalTableContainer}>
           <div 
             dir="rtl"
-            className="ag-theme-quartz custom-table"
-            style={{ 
-              direction: 'rtl', 
-              textAlign: 'right', 
-              height: '80vh', 
-              width: '90vw',
-              maxWidth: '1200px',
-            }}
+            className={`ag-theme-quartz custom-table ${styles.modalTableWrapper}`}
           >
             {tableComponent}
           </div>

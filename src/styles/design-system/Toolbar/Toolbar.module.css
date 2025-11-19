@@ -18,3 +18,7 @@
 
 .spacer { flex: 1; }
 
+.hiddenLabel {
+  display: none;
+}
+

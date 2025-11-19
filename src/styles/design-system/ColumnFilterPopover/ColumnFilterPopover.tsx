@@ -62,13 +62,11 @@ export default function ColumnFilterPopover({
   return (
     <div
       ref={ref}
-      className={styles.popover}
+      className={`${styles.popover} ${styles.popoverPositioned}`}
       style={{ 
-        position: 'absolute',
-        top: pos.top,
-        left: pos.left,
-        zIndex: 1000,
-      }}
+        '--popover-top': `${pos.top}px`,
+        '--popover-left': `${pos.left}px`,
+      } as React.CSSProperties}
       role="dialog"
       aria-hidden={!open}
     >
@@ -114,7 +112,7 @@ export default function ColumnFilterPopover({
                   }}
                   onMouseDown={(e) => e.stopPropagation()}
                 />
-                <span>{value || <span style={{ fontStyle: 'italic', opacity: 0.7 }}>לא הוזן</span>}</span>
+                <span>{value || <span className={styles.emptyValueText}>לא הוזן</span>}</span>
               </label>
             ))
           ) : (

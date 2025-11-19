@@ -268,3 +268,40 @@
   opacity: 0.5;
 }
 
+.buttonMargin {
+  margin-inline-end: 0.5rem;
+}
+
+.gridContainerWrapper {
+  height: 80vh;
+  width: 100%;
+  direction: rtl;
+}
+
+.dataGridFullSize {
+  height: 100%;
+  width: 100%;
+}
+
+.filterButton {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.filterButtonActive {
+  background-color: #3a3d55;
+}
+
+.filterButtonInactive {
+  background-color: transparent;
+}
+
+.filterButtonInactive:hover {
+  background-color: #202233;
+}
+

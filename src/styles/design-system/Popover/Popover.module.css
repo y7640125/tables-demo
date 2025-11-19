@@ -6,5 +6,7 @@
   padding: 0.5rem;
   min-width: 200px;
   z-index: 50;
+  top: var(--popover-top, 0);
+  left: var(--popover-left, 0);
 }
 

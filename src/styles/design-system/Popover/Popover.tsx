@@ -33,7 +33,10 @@ export default function Popover({ anchor, open, onClose, children }: Props) {
     <div
       ref={ref}
       className={styles.popover}
-      style={{ top: pos.top, left: pos.left }}
+      style={{ 
+        '--popover-top': `${pos.top}px`,
+        '--popover-left': `${pos.left}px`,
+      } as React.CSSProperties}
       role="dialog"
       aria-hidden={!open}
     >

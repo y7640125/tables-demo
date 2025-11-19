@@ -34,3 +34,11 @@
   }
 }
 
+.tooltipPositioned {
+  position: fixed;
+  top: var(--tooltip-top, -9999);
+  left: var(--tooltip-left, -9999);
+  z-index: 10000;
+  visibility: var(--tooltip-visibility, hidden);
+}
+
