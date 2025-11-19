@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 import type { GridApi } from 'ag-grid-community';
@@ -8,7 +8,7 @@ import 'ag-grid-community/styles/ag-theme-quartz.css';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 import data from '../../../assets/mock-table-data.json';
-import { Button, ColumnFilterPopover } from '../../../styles/design-system';
+import { Button, ColumnFilterPopover, Modal } from '../../../styles/design-system';
 import { getUniqueValues, type TableData } from '../../../utils/tableUtils';
 import type { RowData } from './types';
 import { useAgGridData } from './hooks/useAgGridData';
@@ -26,6 +26,7 @@ export default function AgGridFieldTablePage() {
   const rowData = tableData.rows;
   
   const [hiddenEmptyColumns, setHiddenEmptyColumns] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const gridRef = useRef<AgGridReact>(null);
   const [gridApi, setGridApi] = useState<GridApi | null>(null);
 
@@ -130,9 +131,55 @@ export default function AgGridFieldTablePage() {
 
   const getRowId = useCallback((params: any) => params.data.id, []);
 
+  // Shared table component function - used in both normal view and modal
+  // This function returns the table component, allowing it to be reused
+  const getTableComponent = useCallback((tableRef?: React.RefObject<AgGridReact>) => (
+    <AgGridReact
+      ref={tableRef || gridRef}
+      rowData={filteredRows}
+      columnDefs={columnDefs}
+      defaultColDef={defaultColDef}
+      onGridReady={onGridReady}
+      onViewportChanged={onViewportChanged}
+      rowBuffer={30}
+      animateRows={false}
+      suppressMultiSort={true}
+      rowHeight={38}
+      headerHeight={38}
+      suppressCellFocus={true}
+      enableRtl={true}
+      localeText={{
+        noRowsToShow: 'אין שורות להצגה',
+      }}
+      onCellDoubleClicked={onCellDoubleClicked}
+      getRowClass={getRowClass}
+      onColumnResized={onColumnResized}
+      getRowId={getRowId}
+    />
+  ), [
+    filteredRows,
+    columnDefs,
+    defaultColDef,
+    onGridReady,
+    onViewportChanged,
+    onCellDoubleClicked,
+    getRowClass,
+    onColumnResized,
+    getRowId
+  ]);
+
+  // Store the table component in a variable for reuse
+  const tableComponent = getTableComponent();
+
   return (
     <div className={styles.container} dir="rtl">
       <div className={styles.toolbar}>
+        <Button
+          onClick={() => setIsModalOpen(true)}
+          style={{ marginInlineEnd: '0.5rem' }}
+        >
+          🔍 פתח במודל
+        </Button>
         <Button
           onClick={startAdding}
           style={{ marginInlineEnd: '0.5rem' }}
@@ -156,28 +203,7 @@ export default function AgGridFieldTablePage() {
           width: '100%',
         }}
       >
-        <AgGridReact
-          ref={gridRef}
-          rowData={filteredRows}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          onGridReady={onGridReady}
-          onViewportChanged={onViewportChanged}
-          rowBuffer={30}
-          animateRows={false}
-          suppressMultiSort={true}
-          rowHeight={38}
-          headerHeight={38}
-          suppressCellFocus={true}
-          enableRtl={true}
-          localeText={{
-            noRowsToShow: 'אין שורות להצגה',
-          }}
-          onCellDoubleClicked={onCellDoubleClicked}
-          getRowClass={getRowClass}
-          onColumnResized={onColumnResized}
-          getRowId={getRowId}
-        />
+        {tableComponent}
       </div>
 
       {filterAnchor && (
@@ -209,6 +235,24 @@ export default function AgGridFieldTablePage() {
           onClose={cancelAdding}
         />
       )}
+
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div className={styles.modalTableContainer}>
+          <div 
+            dir="rtl"
+            className="ag-theme-quartz custom-table"
+            style={{ 
+              direction: 'rtl', 
+              textAlign: 'right', 
+              height: '80vh', 
+              width: '90vw',
+              maxWidth: '1200px',
+            }}
+          >
+            {tableComponent}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
